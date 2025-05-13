@@ -9,6 +9,15 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'admin',
+    pathMatch: 'full',
+    loadComponent() {
+      return import('./pages/admin/admin.component').then(
+        (x) => x.AdminComponent
+      );
+    },
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '',

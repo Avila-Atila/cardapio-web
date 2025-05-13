@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PratosFirebaseService } from '../../services/pratos-firebase.service';
 import { Subject } from 'rxjs';
 import {
+  FormArray,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -31,15 +32,39 @@ export class DisplayComponent implements OnInit, OnDestroy {
     console.log(this.pratos());
   }
 
-  novoPrato = new FormGroup({
+  adicionarPrato = new FormGroup({
     nome: new FormControl(''),
     preco: new FormControl<number>(0, {
       nonNullable: true,
       validators: [Validators.required, Validators.min(0.01)],
     }),
-    disponivel: new FormControl<boolean>(false),
-    ingredientes: new FormControl<string[]>([]),
+    disponivel: new FormControl<boolean>(true),
+    ingredientes: new FormArray<FormControl<string>>([
+      new FormControl<string>('', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+    ]),
   });
+
+  get ingredientesArray() {
+    return this.adicionarPrato.get('ingredientes') as FormArray<
+      FormControl<string>
+    >;
+  }
+
+  addIngredient() {
+    this.ingredientesArray.push(
+      new FormControl<string>('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      })
+    );
+  }
+
+  removeIngredient(index: number) {
+    this.ingredientesArray.removeAt(index);
+  }
 
   teste(info: FormGroup) {
     let novoPrato: Pratos = {
