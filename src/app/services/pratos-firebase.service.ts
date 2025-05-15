@@ -8,7 +8,7 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Pratos } from '../models/pratos.interface';
-import { addDoc } from '@firebase/firestore';
+import { addDoc, updateDoc } from '@firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +30,10 @@ export class PratosFirebaseService {
   deletePrato(id: string) {
     const pratoDoc = doc(this.firestore, `pratos/${id}`);
     return deleteDoc(pratoDoc);
+  }
+
+  updatePratoPreco(id: string, preco: number) {
+    const pratoDoc = doc(this.firestore, `pratos/${id}`);
+    return updateDoc(pratoDoc, { preco });
   }
 }

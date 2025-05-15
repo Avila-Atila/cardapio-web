@@ -86,6 +86,10 @@ export class DisplayComponent implements OnInit, OnDestroy {
       .catch((err) => console.error('erro:', err));
   }
 
+  teste3(id: string, preco: number) {
+    this.requestService.updatePratoPreco(id, preco);
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
