@@ -18,6 +18,15 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'cardapio',
+    pathMatch: 'full',
+    loadComponent() {
+      return import('./pages/cardapio/cardapio.component').then(
+        (x) => x.CardapioComponent
+      );
+    },
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '',

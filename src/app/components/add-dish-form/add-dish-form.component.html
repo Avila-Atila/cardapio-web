@@ -1,0 +1,86 @@
+<div class="card-body">
+  <form
+    (submit)="teste(adicionarPrato)"
+    [formGroup]="adicionarPrato"
+    class="d-flex flex-column container-fluid gap-3"
+  >
+    <div class="form-floating">
+      <input
+        id="dish__name"
+        required
+        class="form-control"
+        type="text"
+        placeholder="Nome do Prato"
+        formControlName="nome"
+      />
+      <label for="dish__name">Nome do Prato</label>
+    </div>
+    <div class="input-group">
+      <span class="input-group-text">R$</span>
+
+      <div class="form-floating">
+        <input
+          required
+          class="form-control"
+          type="number"
+          formControlName="preco"
+          id="dish__price"
+          placeholder="Preço do Prato"
+          min="0.01"
+          step="0.01"
+        />
+        <label for="dish__price">Preço do Prato</label>
+      </div>
+    </div>
+    <div
+      class="overflow-y-auto overflow-x-hidden wrapper__ingredients"
+      [class.container-fluid]="ingredientesArray.length > 1"
+    >
+      <div formArrayName="ingredientes">
+        <div
+          *ngFor="let ctrl of ingredientesArray.controls; let i = index"
+          class="d-flex align-items-center mb-2 form-floating"
+        >
+          <input
+            [formControlName]="i"
+            [id]="i"
+            class="form-control"
+            [class.me-2]="ingredientesArray.length > 1"
+            placeholder="Ingrediente {{ i + 1 }}"
+          />
+          <label [htmlFor]="i">Ingrediente {{ i + 1 }}</label>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            (click)="removeIngredient(i)"
+            *ngIf="ingredientesArray.length > 1"
+          >
+            &times;
+          </button>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-sm"
+          (click)="addIngredient()"
+        >
+          + Adicionar ingrediente
+        </button>
+      </div>
+    </div>
+    <label class="d-flex align-items-center justify-content-end gap-2">
+      Já está disponível?
+      <input
+        class="form-check-input d-inline-block align-self-center"
+        type="checkbox"
+        formControlName="disponivel"
+      />
+    </label>
+    <button
+      class="btn btn-outline-success btn-sm"
+      [disabled]="!adicionarPrato.valid"
+    >
+      adicionar prato
+    </button>
+  </form>
+</div>

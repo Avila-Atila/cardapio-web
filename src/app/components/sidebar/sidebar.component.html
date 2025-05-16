@@ -1,32 +1,15 @@
-<i
-  class="fa-solid fa-bars botao__sidebar text-info-emphasis"
-  (click)="controleSideBar()"
-></i>
-
-<nav class="sidebar" [class.sidebar-fechada]="sideBarFechada()">
-  <div
-    class="p-1 d-flex justify-content-between align-items-center"
-    *ngIf="!sideBarFechada()"
-  >
-    <span class="h5">Painel de Administrador</span>
-    <i
-      class="fa-solid far fas fas fa-window-close sidebar__fechar text-info-emphasis"
-      (click)="controleSideBar()"
-    ></i>
-  </div>
-
-  <div *ngIf="!sideBarFechada()" class="sidebar__div__links">
-    <button
-      [ngClass]="{ botao__selecionado: router.url === '/home' }"
-      class="sidebar__div__links__home text-info-emphasis"
-    >
-      Configurações gerais
-    </button>
-    <button
-      [ngClass]="{ botao__selecionado: router.url === '/dashboard' }"
-      class="sidebar__div__links__dashboard text-info-emphasis"
-    >
-      Itens do menu
-    </button>
-  </div>
+<nav
+  class="d-flex justify-content-end align-items-center bg-dark gap-2 p-0 m-0 p-1"
+>
+  <div class=""></div>
+  <div class="me-auto text-white d-none d-sm-inline-block">Casa das Pizzas</div>
+  <button class="btn btn-sm text-white" routerLink="/admin">
+    Configurações gerais
+  </button>
+  <button class="btn btn-sm text-white" routerLink="/cardapio">
+    Configurações do cardápio
+  </button>
+  <button class="btn btn-outline-danger p-0 px-0 px-sm-1" routerLink="">
+    Desconectar
+  </button>
 </nav>

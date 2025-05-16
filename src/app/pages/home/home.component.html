@@ -1,7 +1,528 @@
-<div
-  class="container-fluid d-flex justify-content-end p-0 p-2 bg-gradient bg-dark"
->
-  <app-header></app-header>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-pizza-slice me-2"></i>
+      Pizzaria Sabor Italiano
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <span class="nav-link">
+            <span class="status-indicator open"></span>
+            Aberto
+          </span>
+        </li>
+        <li class="nav-item">
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#descontosModal"
+          >
+            <i class="fas fa-tag me-1"></i> Descontos
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#carrinhoModal"
+          >
+            <i class="fas fa-shopping-cart me-1"></i> Carrinho
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#pedidosModal"
+          >
+            <i class="fas fa-history me-1"></i> Pedidos
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#perfilModal"
+          >
+            <i class="fas fa-user me-1"></i> Perfil
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="container-fluid p-0 mb-4">
+  <div id="pizzaCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#pizzaCarousel"
+        data-bs-slide-to="0"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#pizzaCarousel"
+        data-bs-slide-to="1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#pizzaCarousel"
+        data-bs-slide-to="2"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+          class="d-block w-100"
+          alt="Pizza Margherita"
+        />
+        <div
+          class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded"
+        >
+          <h5>Pizza Margherita</h5>
+          <p>
+            Clássica pizza italiana com molho de tomate, mussarela e manjericão
+            fresco.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80"
+          class="d-block w-100"
+          alt="Pizza Pepperoni"
+        />
+        <div
+          class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded"
+        >
+          <h5>Pizza Pepperoni</h5>
+          <p>
+            Deliciosa pizza com pepperoni, queijo derretido e molho especial.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1581&q=80"
+          class="d-block w-100"
+          alt="Pizza Vegetariana"
+        />
+        <div
+          class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded"
+        >
+          <h5>Pizza Vegetariana</h5>
+          <p>
+            Pizza recheada com diversos vegetais frescos e queijo derretido.
+          </p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#pizzaCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#pizzaCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
 </div>
 
-<section></section>
+<!-- Main Content -->
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Nossas Pizzas</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img
+              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1581&q=80"
+              class="card-img-top"
+              alt="Pizza Margherita"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Margherita</h5>
+              <p class="card-text">
+                Molho de tomate, mussarela, manjericão fresco e azeite de oliva.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">R$ 39,90</span>
+                <button class="btn btn-sm btn-custom">Adicionar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img
+              src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80"
+              class="card-img-top"
+              alt="Pizza Pepperoni"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Pepperoni</h5>
+              <p class="card-text">
+                Molho de tomate, mussarela e pepperoni em fatias.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">R$ 44,90</span>
+                <button class="btn btn-sm btn-custom">Adicionar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img
+              src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              class="card-img-top"
+              alt="Pizza Calabresa"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Calabresa</h5>
+              <p class="card-text">
+                Molho de tomate, mussarela, calabresa fatiada e cebola.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">R$ 42,90</span>
+                <button class="btn btn-sm btn-custom">Adicionar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Promoções</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Combo Família</h5>
+              <p class="card-text">
+                2 pizzas grandes + 1 refrigerante 2L por apenas R$ 79,90.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="text-danger fw-bold">R$ 79,90</span>
+                <span class="text-muted"><del>R$ 99,90</del></span>
+                <button class="btn btn-sm btn-custom">Adicionar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Quarta-feira da Pizza</h5>
+              <p class="card-text">
+                Todas as pizzas médias com 30% de desconto às quartas-feiras.
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="text-danger fw-bold">30% OFF</span>
+                <button class="btn btn-sm btn-custom">Ver cardápio</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>Pizzaria Sabor Italiano</h5>
+        <p>
+          A melhor pizza da cidade, feita com ingredientes frescos e receitas
+          tradicionais italianas.
+        </p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Horário de Funcionamento</h5>
+        <p>Segunda a Sábado: 18h - 23h</p>
+        <p>Domingo: 17h - 22h</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Contato</h5>
+        <p><i class="fas fa-phone me-2"></i> (11) 1234-5678</p>
+        <p>
+          <i class="fas fa-map-marker-alt me-2"></i> Rua das Pizzas, 123 -
+          Centro
+        </p>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <p>&copy; 2023 Pizzaria Sabor Italiano. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Modals -->
+<!-- Descontos Modal -->
+<div class="modal fade" id="descontosModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">Descontos e Promoções</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-warning">
+          <h6><i class="fas fa-tag me-2"></i> Cupom de Desconto</h6>
+          <p>
+            Use o cupom <strong>PIZZA10</strong> para ganhar 10% de desconto no
+            seu pedido!
+          </p>
+        </div>
+        <div class="alert alert-info">
+          <h6><i class="fas fa-star me-2"></i> Programa de Fidelidade</h6>
+          <p>A cada 5 pedidos, ganhe uma pizza média grátis!</p>
+        </div>
+        <div class="alert alert-success">
+          <h6><i class="fas fa-bolt me-2"></i> Promoção Relâmpago</h6>
+          <p>Hoje até as 20h, todas as pizzas pequenas por R$ 29,90!</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Carrinho Modal -->
+<div class="modal fade" id="carrinhoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">
+          <i class="fas fa-shopping-cart me-2"></i> Seu Carrinho
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group mb-3">
+          <div
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <h6 class="mb-1">Pizza Margherita</h6>
+              <small class="text-muted">Tamanho: Grande</small>
+            </div>
+            <div>
+              <span class="fw-bold">R$ 39,90</span>
+              <button class="btn btn-sm btn-outline-danger ms-2">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <h6 class="mb-1">Refrigerante 2L</h6>
+              <small class="text-muted">Sabor: Coca-Cola</small>
+            </div>
+            <div>
+              <span class="fw-bold">R$ 12,00</span>
+              <button class="btn btn-sm btn-outline-danger ms-2">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <span>Subtotal:</span>
+          <span class="fw-bold">R$ 51,90</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <span>Taxa de entrega:</span>
+          <span class="fw-bold">R$ 8,00</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <span>Total:</span>
+          <span class="fw-bold h5">R$ 59,90</span>
+        </div>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Cupom de desconto"
+          />
+          <button class="btn btn-custom">Aplicar</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Continuar Comprando
+        </button>
+        <button type="button" class="btn btn-custom">Finalizar Pedido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pedidos Modal -->
+<div class="modal fade" id="pedidosModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">
+          <i class="fas fa-history me-2"></i> Seus Pedidos
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <h6 class="mb-1">Pedido #12345</h6>
+              <span class="badge bg-success">Entregue</span>
+            </div>
+            <small class="text-muted">15/06/2023 - R$ 59,90</small>
+            <p class="mb-1 mt-2">1x Pizza Margherita Grande</p>
+            <p class="mb-1">1x Refrigerante 2L</p>
+            <button class="btn btn-sm btn-custom mt-2">Pedir Novamente</button>
+          </div>
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <h6 class="mb-1">Pedido #12344</h6>
+              <span class="badge bg-secondary">Cancelado</span>
+            </div>
+            <small class="text-muted">10/06/2023 - R$ 89,90</small>
+            <p class="mb-1 mt-2">1x Pizza Pepperoni Grande</p>
+            <p class="mb-1">1x Pizza Calabresa Média</p>
+            <p class="mb-1">2x Refrigerante 2L</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Perfil Modal -->
+<div class="modal fade" id="perfilModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title"><i class="fas fa-user me-2"></i> Meu Perfil</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <img
+            src="https://via.placeholder.com/100"
+            class="rounded-circle mb-2"
+            alt="Foto de perfil"
+          />
+          <h5>João da Silva</h5>
+          <p class="text-muted">joao.silvaemail.com</p>
+        </div>
+        <div class="mb-3">
+          <h6>Informações Pessoais</h6>
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Telefone
+              <span>(11) 98765-4321</span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Endereço Principal
+              <span>Rua das Pizzas, 123 - Apto 101</span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Pontos de Fidelidade
+              <span class="badge bg-warning text-dark">3/5</span>
+            </li>
+          </ul>
+        </div>
+        <div class="mb-3">
+          <h6>Configurações</h6>
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-map-marker-alt me-2"></i> Meus Endereços
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-credit-card me-2"></i> Formas de Pagamento
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-bell me-2"></i> Notificações
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action text-danger"
+            >
+              <i class="fas fa-sign-out-alt me-2"></i> Sair
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

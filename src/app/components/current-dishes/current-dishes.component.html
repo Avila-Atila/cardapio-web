@@ -1,0 +1,178 @@
+<div
+  class="row row-gap-2 justify-content-start flex-fill px-0 px-sm-2 overflow-y-auto overflow-x-hidden wrapper__menu mb-2 mb-sm-0"
+>
+  <div
+    *ngFor="let prato of pratos()"
+    class="col-6 col-md-4 col-xl-3 p-1 p-sm-2"
+  >
+    <div class="card shadow-sm rounded-0 d-flex flex-column h-100">
+      <div class="card-header">{{ prato.nome }}</div>
+      <div class="card-body flex-grow-1 px-2">{{ prato.ingredientes }}</div>
+      <div *ngIf="prato.disponivel">
+        <span class="rounded-pill bg-success available__message px-1"
+          >Disponível</span
+        >
+      </div>
+      <div *ngIf="!prato.disponivel">
+        <span class="rounded-pill bg-danger available__message px-1"
+          >Indisponível</span
+        >
+      </div>
+
+      <div>R${{ prato.preco }}</div>
+      <div class="w-100 d-flex justify-content-between">
+        <i
+          class="fas fa-edit d-inline-block edit__icon text-success"
+          (click)="openEditModal(prato, 'editModal-' + prato.id)"
+        ></i>
+
+        <div
+          class="modal fade"
+          [id]="'editModal-' + prato.id"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title fs-5" id="exampleModalLabel2">
+                  Alterar informações do prato
+                </h2>
+              </div>
+              <div class="modal-body">
+                <form
+                  [formGroup]="editDish"
+                  (ngSubmit)="onSubmitPartial(prato.id!)"
+                >
+                  <div class="form-floating">
+                    <input
+                      id="dish__name-{{ prato.id }}"
+                      class="form-control"
+                      type="text"
+                      formControlName="nome"
+                      [attr.placeholder]="prato.nome"
+                    />
+                    <label for="dish__name-{{ prato.id }}">Nome do Prato</label>
+                  </div>
+
+                  <div class="input-group">
+                    <span class="input-group-text">R$</span>
+                    <div class="form-floating">
+                      <input
+                        id="dish__price-{{ prato.id }}"
+                        class="form-control"
+                        type="number"
+                        formControlName="preco"
+                        min="0.01"
+                        step="0.01"
+                        [attr.placeholder]="prato.preco"
+                      />
+                      <label for="dish__price-{{ prato.id }}"
+                        >Preço do Prato</label
+                      >
+                    </div>
+                  </div>
+
+                  <label class="form-check-label">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      formControlName="disponivel"
+                      [checked]="prato.disponivel"
+                      id="avail-{{ prato.id }}"
+                    />
+                    Já está disponível?
+                  </label>
+
+                  <div formArrayName="ingredientes">
+                    <div
+                      *ngFor="
+                        let ctrl of ingredientesArray.controls;
+                        let idx = index
+                      "
+                      class="form-floating mb-2 d-flex align-items-center"
+                    >
+                      <input
+                        [formControlName]="idx"
+                        class="form-control"
+                        [attr.placeholder]="
+                          prato.ingredientes[idx] || 'Ingrediente ' + (idx + 1)
+                        "
+                        [id]="'ing-' + idx"
+                      />
+                      <label [for]="'ing-' + idx"
+                        >Ingrediente {{ idx + 1 }}</label
+                      >
+                      <button
+                        *ngIf="ingredientesArray.length > 1"
+                        type="button"
+                        class="btn btn-outline-danger btn-sm ms-2"
+                        (click)="removeIngredient(idx)"
+                      >
+                        &times;
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm"
+                      (click)="addIngredient()"
+                    >
+                      + Adicionar ingrediente
+                    </button>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button
+                      type="submit"
+                      class="btn btn-outline-primary"
+                      [disabled]="editDish.pristine"
+                      data-bs-dismiss="modal"
+                    >
+                      Salvar alterações
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <i
+          class="far fa-trash-alt text-danger delete__icon mb-1 d-inline-block"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#deleteModal-' + prato.id"
+        ></i>
+      </div>
+
+      <div
+        class="modal fade"
+        [id]="'deleteModal-' + prato.id"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-5" id="exampleModalLabel">
+                Remover Prato?
+              </h2>
+            </div>
+            <div class="modal-body">
+              Você realmente deseja remover esse prato? Essa ação não pode ser
+              desfeita!
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-outline-danger"
+                data-bs-dismiss="modal"
+                (click)="deleteDish(prato.id!)"
+              >
+                Apagar prato
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.wrapper__ingredients {
+  max-height: 200px;
+}
+
+.wrapper__menu {
+  max-height: 500px;
+}
+
+.delete__icon {
+  cursor: pointer;
+  max-width: fit-content;
+
+  margin-right: 4%;
+}
+
+.available__message {
+  font-size: 0.75rem;
+}
+
+.edit__icon {
+  max-width: fit-content;
+  margin-left: 4%;
+  cursor: pointer;
+}
