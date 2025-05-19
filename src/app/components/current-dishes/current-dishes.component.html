@@ -5,7 +5,7 @@
     *ngFor="let prato of pratos()"
     class="col-6 col-md-4 col-xl-3 p-1 p-sm-2"
   >
-    <div class="card shadow-sm rounded-0 d-flex flex-column h-100">
+    <div class="card shadow-md rounded-0 d-flex flex-column h-100">
       <div class="card-header">{{ prato.nome }}</div>
       <div class="card-body flex-grow-1 px-2">{{ prato.ingredientes }}</div>
       <div *ngIf="prato.disponivel">
