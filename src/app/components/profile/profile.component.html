@@ -1,0 +1,245 @@
+<!-- Perfil Modal -->
+<div class="modal fade" id="perfilModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title"><i class="fas fa-user me-2"></i> Meu Perfil</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <h5>João da Silva</h5>
+        </div>
+        <div class="mb-3">
+          <h6>Informações Pessoais</h6>
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Telefone
+              <span>(11) 98765-4321</span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Endereço Principal
+              <span>Rua das Pizzas, 123 - Apto 101</span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Pontos de Fidelidade
+              <span class="badge bg-warning text-dark">3/5</span>
+            </li>
+          </ul>
+        </div>
+        <div class="mb-3">
+          <h6>Configurações</h6>
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action">
+              <i class="fas fa-map-marker-alt me-2"></i> Meus Endereços
+            </a>
+            <a class="list-group-item list-group-item-action">
+              <i class="fas fa-credit-card me-2"></i> Formas de Pagamento
+            </a>
+            <a class="list-group-item list-group-item-action">
+              <i class="fas fa-bell me-2"></i> Notificações
+            </a>
+            <a class="list-group-item list-group-item-action text-danger">
+              <i class="fas fa-sign-out-alt me-2"></i> Sair
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Registrar modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">
+          <i class="fas fa-user me-2"></i> Registrar Usuário
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="text-center"></div>
+        <div class="mb-3">
+          <h6 class="px-3">Informações Pessoais</h6>
+          <form
+            class="d-flex flex-column container-fluid gap-3"
+            [formGroup]="registerForm"
+            (submit)="register()"
+          >
+            <div class="form-floating">
+              <input
+                required
+                class="form-control"
+                type="email"
+                placeholder="Seu Email"
+                formControlName="email"
+                id="form__email"
+                formControlName="email"
+              />
+              <label for="form__email">Seu Email</label>
+            </div>
+            <div class="form-floating">
+              <input
+                required
+                class="form-control"
+                type="password"
+                id="form__password"
+                placeholder="Sua Senha"
+                formControlName="password"
+              />
+              <label for="form__password">Sua Senha</label>
+            </div>
+            <div class="form-floating">
+              <input
+                required
+                class="form-control"
+                type="text"
+                id="form__name"
+                placeholder="Nome e Sobrenome"
+                formControlName="name"
+              />
+              <label for="form__name">Seu Nome e Sobrenome</label>
+            </div>
+            <div class="form-floating">
+              <input
+                required
+                class="form-control"
+                type="text"
+                id="form__address"
+                placeholder="Seu Endereço"
+                formControlName="address"
+              />
+              <label for="form__address">Seu Endereço</label>
+            </div>
+            <div class="form-floating">
+              <input
+                required
+                class="form-control"
+                type="tel"
+                id="form__tel"
+                placeholder="Seu Telefone"
+                formControlName="tel"
+              />
+              <label for="form__tel">Seu Telefone</label>
+            </div>
+
+            <button
+              class="btn btn-outline-success btn-sm"
+              [disabled]="!registerForm.valid"
+            >
+              Criar Conta
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-info me-auto"
+          data-bs-dismiss="modal"
+          data-bs-toggle="modal"
+          data-bs-target="#loginModal"
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">
+          <i class="fas fa-user me-2"></i> Acessar Sua Conta
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="text-center"></div>
+        <div class="mb-3">
+          <h6 class="px-3">Informações Pessoais</h6>
+          <form
+            class="d-flex flex-column container-fluid gap-3"
+            [formGroup]="loginForm"
+            (submit)="login()"
+          >
+            <div class="form-floating">
+              <input
+                required
+                class="form-control"
+                type="email"
+                placeholder="Seu Email"
+                formControlName="email"
+                id="form__emailLogin"
+                formControlName="email"
+              />
+              <label for="form__emailLogin">Seu Email</label>
+            </div>
+            <div class="form-floating">
+              <input
+                required
+                class="form-control"
+                type="password"
+                id="form__passwordLogin"
+                placeholder="Sua Senha"
+                formControlName="password"
+              />
+              <label for="form__passwordLogin">Sua Senha</label>
+            </div>
+
+            <button
+              class="btn btn-outline-success btn-sm"
+              [disabled]="!loginForm.valid"
+            >
+              Acessar
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-info me-auto"
+          data-bs-dismiss="modal"
+          data-bs-toggle="modal"
+          data-bs-target="#registerModal"
+        >
+          Registrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

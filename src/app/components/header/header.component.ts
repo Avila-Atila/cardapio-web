@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [ProfileComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
-export class HeaderComponent {
-
-}
+export class HeaderComponent {}

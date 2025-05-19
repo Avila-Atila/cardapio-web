@@ -16,7 +16,10 @@
       {{ title.toLowerCase() }} ({{ slices }} pedaços).
     </p>
     <div class="d-flex justify-content-between align-items-center">
-      <span class="fw-bold">R$ {{ price.toFixed(2) }}</span>
+      <span class="fw-bold"
+        ><span class="fw-lighter">A partir de: </span> R$
+        {{ price.toFixed(2) }}</span
+      >
       <button
         class="btn btn-sm btn-custom"
         data-bs-toggle="modal"
