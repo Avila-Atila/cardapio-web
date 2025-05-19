@@ -4,13 +4,21 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
   user,
   User,
-  UserCredential,
 } from '@angular/fire/auth';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
-import { from, Observable, switchMap, of } from 'rxjs';
+import {
+  from,
+  Observable,
+  switchMap,
+  of,
+  tap,
+  catchError,
+  throwError,
+} from 'rxjs';
 import { UserInfoInterface } from '../models/user-info.interface';
 import { UserInterface } from '../models/user.interface';
 
@@ -27,8 +35,7 @@ export class AuthService {
   private auth = inject(Auth);
   private firestore = inject(Firestore);
 
-  user$ = user(this.auth);
-  currentuser = signal<UserInterface | null | undefined>(undefined);
+  currentUser = signal<UserInfoInterface | null>(null);
 
   login(email: string, password: string): Observable<UserInfoInterface> {
     return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
@@ -38,6 +45,13 @@ export class AuthService {
         return docData(userDoc, {
           idField: 'uid',
         }) as Observable<UserInfoInterface>;
+      }),
+      tap((profile) => {
+        this.currentUser.set(profile);
+      }),
+      catchError((err) => {
+        this.currentUser.set(null);
+        return throwError(() => err);
       })
     );
   }
@@ -74,6 +88,12 @@ export class AuthService {
       switchMap(() => of(void 0))
     );
   }
-}
 
-// name:string, address:string, tel:string
+  logout(): Observable<void> {
+    return from(signOut(this.auth)).pipe(
+      tap(() => {
+        this.currentUser.set(null);
+      })
+    );
+  }
+}

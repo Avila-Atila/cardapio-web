@@ -47,7 +47,9 @@
           <button
             class="btn btn-sm btn-custom ms-2"
             data-bs-toggle="modal"
-            data-bs-target="#carrinhoModal"
+            [attr.data-bs-target]="
+              authService.currentUser() ? '#carrinhoModal' : '#loginModal'
+            "
           >
             <i class="fas fa-shopping-cart me-1"></i> Carrinho
           </button>
@@ -58,7 +60,9 @@
           <button
             class="btn btn-sm btn-custom ms-2"
             data-bs-toggle="modal"
-            data-bs-target="#pedidosModal"
+            [attr.data-bs-target]="
+              authService.currentUser() ? '#pedidosModal' : '#loginModal'
+            "
           >
             <i class="fas fa-history me-1"></i> Pedidos
           </button>
@@ -70,6 +74,9 @@
             class="btn btn-sm btn-custom ms-2"
             data-bs-toggle="modal"
             data-bs-target="#loginModal"
+            [attr.data-bs-target]="
+              authService.currentUser() ? '#perfilModal' : '#loginModal'
+            "
           >
             <i class="fas fa-user me-1"></i> Perfil
           </button>
@@ -79,4 +86,6 @@
   </div>
 </nav>
 
+<app-cart></app-cart>
+<app-orders></app-orders>
 <app-profile></app-profile>

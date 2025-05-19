@@ -56,6 +56,22 @@ export class ProfileComponent {
       });
   }
   login() {
-    console.log(this.loginForm.value);
+    if (this.loginForm.invalid) return;
+
+    this.authService
+      .login(this.loginForm.value.email!, this.loginForm.value.password!)
+      .subscribe({
+        next: () => {
+          document.getElementById('login__form__close')?.click();
+        },
+        error: (err) => alert(err),
+      });
+  }
+
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => window.location.reload(),
+      error: (err) => alert(err),
+    });
   }
 }
