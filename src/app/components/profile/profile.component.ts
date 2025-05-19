@@ -48,7 +48,18 @@ export class ProfileComponent {
         this.registerForm.value.tel!
       )
       .subscribe({
-        next: () => console.log('User registered!'),
+        next: () => {
+          this.authService
+            .login(
+              this.registerForm.value.email!,
+              this.registerForm.value.password!
+            )
+            .subscribe({
+              next: () =>
+                document.getElementById('register__form__close')?.click(),
+              error: (err) => alert(err),
+            });
+        },
         error: (err) => {
           alert(`Erro: ${err}`);
           this.registerForm.enable();

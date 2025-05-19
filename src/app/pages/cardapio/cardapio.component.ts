@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
-import { DisplayComponent } from '../../components/display/display.component';
+import { AddDishFormComponent } from '../../components/add-dish-form/add-dish-form.component';
+import { CurrentDishesComponent } from '../../components/current-dishes/current-dishes.component';
 
 @Component({
   selector: 'app-cardapio',
-  imports: [SidebarComponent, DisplayComponent],
+  imports: [AddDishFormComponent, CurrentDishesComponent],
   templateUrl: './cardapio.component.html',
   styleUrl: './cardapio.component.css',
 })
