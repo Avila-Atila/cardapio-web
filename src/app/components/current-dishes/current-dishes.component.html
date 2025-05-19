@@ -23,9 +23,11 @@
           <div class="w-100 d-flex justify-content-between">
             <i
               class="fas fa-edit d-inline-block edit__icon text-success"
-              (click)="openEditModal(prato, 'editModal-' + prato.id)"
+              (click)="onEditClick(prato)"
+              data-bs-toggle="modal"
+              data-bs-target="#editModal"
             ></i>
-
+            <!-- 
             <div
               class="modal fade"
               [id]="'editModal-' + prato.id"
@@ -40,10 +42,7 @@
                     </h2>
                   </div>
                   <div class="modal-body">
-                    <form
-                      [formGroup]="editDish"
-                      (ngSubmit)="onSubmitPartial(prato.id!)"
-                    >
+                    <form [formGroup]="editDish">
                       <div class="form-floating">
                         <input
                           id="dish__name-{{ prato.id }}"
@@ -138,7 +137,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <i
               class="far fa-trash-alt text-danger delete__icon mb-1 d-inline-block"
