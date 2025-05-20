@@ -4,4 +4,5 @@ export interface UserInfoInterface {
   name: string;
   tel: string;
   uid: string;
+  orders: number;
 }

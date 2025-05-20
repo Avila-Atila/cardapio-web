@@ -1,0 +1,214 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-header admin-header bg-dark text-white">
+    <h3 class="mb-0">
+      <i class="fas fa-clipboard-list me-2"></i> Histórico de Pedidos
+    </h3>
+  </div>
+  <div class="card-body">
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="btn-group">
+          <button class="btn btn-outline-dark active">Todos</button>
+          <button class="btn btn-outline-dark">Completos</button>
+          <button class="btn btn-outline-dark">Pendentes</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group">
+      <div
+        *ngFor="let order of orders$ | async"
+        class="list-group-item order-card mb-2 rounded"
+      >
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">Pedido #{{ order.uid }}</h5>
+            <small class="text-muted">
+              <i class="fas fa-user me-1"></i> {{ order.ownerId }}
+            </small>
+          </div>
+          <div class="text-end">
+            <div
+              class="status-badge mb-1"
+              [ngClass]="{
+                completed: order.complete,
+                pending: !order.complete
+              }"
+            >
+              {{ order.complete ? "Completo" : "Pendente" }}
+            </div>
+            <div class="text-muted">
+              <small>
+                <i class="fas fa-clock me-1"></i>
+                {{ order.time.toDate() | date : "dd/MM/yyyy - HH:mm" }}
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <span
+            *ngFor="let ingr of order.addres.split(',')"
+            class="badge bg-light text-dark me-1"
+          >
+            <i class="fas fa-pizza-slice me-1"></i> {{ ingr }}
+          </span>
+        </div>
+        <div class="mt-2 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="fw-bold">Total: R$ {{ order.price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Orders List -->
+<!-- <div class="list-group"> -->
+<!-- Order 1 -->
+<!-- <div class="list-group-item order-card mb-2 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">Pedido #1001</h5>
+            <small class="text-muted">
+              <i class="fas fa-user me-1"></i> João Silva
+            </small>
+          </div>
+          <div class="text-end">
+            <div class="status-badge completed mb-1">Completo</div>
+            <div class="text-muted">
+              <small>
+                <i class="fas fa-clock me-1"></i> 15/06/2023 - 18:30
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-pizza-slice me-1"></i> Margherita
+          </span>
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-wine-bottle me-1"></i> Coca-Cola 2L
+          </span>
+          <span class="badge bg-light text-dark">
+            <i class="fas fa-bread-slice me-1"></i> Pão de Alho
+          </span>
+        </div>
+        <div class="mt-2 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="fw-bold">Total: R$ 59,90</span>
+          </div>
+        </div>
+      </div> -->
+
+<!-- Order 2 -->
+<!-- <div class="list-group-item order-card mb-2 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">Pedido #1002</h5>
+            <small class="text-muted">
+              <i class="fas fa-user me-1"></i> Maria Oliveira
+            </small>
+          </div>
+          <div class="text-end">
+            <div class="status-badge pending mb-1">Pendente</div>
+            <div class="text-muted">
+              <small>
+                <i class="fas fa-clock me-1"></i> 16/06/2023 - 19:15
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-pizza-slice me-1"></i> Calabresa
+          </span>
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-pizza-slice me-1"></i> Portuguesa
+          </span>
+          <span class="badge bg-light text-dark">
+            <i class="fas fa-wine-bottle me-1"></i> Guaraná 1L
+          </span>
+        </div>
+        <div class="mt-2 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="fw-bold">Total: R$ 89,80</span>
+          </div>
+        </div>
+      </div> -->
+
+<!-- Order 3 -->
+<!-- <div class="list-group-item order-card mb-2 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">Pedido #1003</h5>
+            <small class="text-muted">
+              <i class="fas fa-user me-1"></i> Carlos Souza
+            </small>
+          </div>
+          <div class="text-end">
+            <div class="status-badge completed mb-1">Completo</div>
+            <div class="text-muted">
+              <small>
+                <i class="fas fa-clock me-1"></i> 17/06/2023 - 20:45
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-pizza-slice me-1"></i> Frango com Catupiry
+          </span>
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-pizza-slice me-1"></i> Muçarela
+          </span>
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-wine-bottle me-1"></i> Fanta Laranja 2L
+          </span>
+          <span class="badge bg-light text-dark">
+            <i class="fas fa-bread-slice me-1"></i> Pão de Alho
+          </span>
+        </div>
+        <div class="mt-2 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="fw-bold">Total: R$ 109,70</span>
+          </div>
+        </div>
+      </div>
+ -->
+<!-- Order 4 -->
+<!-- <div class="list-group-item order-card mb-2 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">Pedido #1004</h5>
+            <small class="text-muted">
+              <i class="fas fa-user me-1"></i> Ana Paula
+            </small>
+          </div>
+          <div class="text-end">
+            <div class="status-badge pending mb-1">Pendente</div>
+            <div class="text-muted">
+              <small>
+                <i class="fas fa-clock me-1"></i> 18/06/2023 - 21:30
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <span class="badge bg-light text-dark me-1">
+            <i class="fas fa-pizza-slice me-1"></i> Quatro Queijos
+          </span>
+          <span class="badge bg-light text-dark">
+            <i class="fas fa-wine-bottle me-1"></i> Coca-Cola 1L
+          </span>
+        </div>
+        <div class="mt-2 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="fw-bold">Total: R$ 49,90</span>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+<!-- Pagination -->
+<!-- </div> -->

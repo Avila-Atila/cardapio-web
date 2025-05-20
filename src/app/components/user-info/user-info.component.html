@@ -1,0 +1,57 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-header admin-header bg-dark text-white">
+    <h3 class="mb-0">
+      <i class="fas fa-users-cog me-2"></i> Informações de usuários
+    </h3>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>
+              <span class="table__header"
+                ><i class="fa far fa-user-circle"></i> Nome
+              </span>
+            </th>
+            <th>
+              <span class="table__header">
+                <i class="fa fas fa-phone-alt"></i> Telefone
+              </span>
+            </th>
+            <th>
+              <span class="table__header">
+                <i class="fa fas fa-envelope"></i> Email
+              </span>
+            </th>
+            <th>
+              <span class="table__header">
+                <i class="fa fas fa-home"></i> Endereço
+              </span>
+            </th>
+            <th>
+              <span class="table__header">
+                <i class="fa fas fa-clipboard-check"></i> Pedidos
+              </span>
+            </th>
+            <th>
+              <span class="table__header">
+                <i class="fa far fa-id-badge"></i> ID
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of users$ | async">
+            <td>{{ u.name }}</td>
+            <td>{{ u.tel }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.address }}</td>
+            <td>{{ u.orders }}</td>
+            <td>{{ u.uid }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { Pratos } from '../../models/pratos.interface';
 import { PratosFirebaseService } from '../../services/pratos-firebase.service';
 import { AdminNavComponent } from '../../components/admin-nav/admin-nav.component';
-import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
 
 @Component({
   selector: 'app-cardapio',
@@ -22,7 +21,6 @@ import { AdminHeaderComponent } from '../../components/admin-header/admin-header
     ReactiveFormsModule,
     CommonModule,
     AdminNavComponent,
-    AdminHeaderComponent,
   ],
   templateUrl: './cardapio.component.html',
   styleUrl: './cardapio.component.css',

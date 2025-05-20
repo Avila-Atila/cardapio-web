@@ -36,6 +36,15 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'pedidos',
+    pathMatch: 'full',
+    loadComponent() {
+      return import('./pages/pedidos/pedidos.component').then(
+        (x) => x.PedidosComponent
+      );
+    },
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '',

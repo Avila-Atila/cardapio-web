@@ -4,11 +4,8 @@
   </div>
   <div class="card-body p-0">
     <ul class="nav nav-pills flex-column">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/cardapio']"
-          [class.active]="router.isActive('/cardapio', true)"
+      <li class="nav-item" [class.active]="router.isActive('/cardapio', true)">
+        <a class="nav-link" [routerLink]="['/cardapio']"
           ><i class="fas fa-utensils me-2"></i> Cardápio</a
         >
       </li>

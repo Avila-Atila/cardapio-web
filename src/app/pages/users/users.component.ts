@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AdminNavComponent } from '../../components/admin-nav/admin-nav.component';
+import { UserInfoComponent } from '../../components/user-info/user-info.component';
 
 @Component({
   selector: 'app-users',
-  imports: [AdminNavComponent],
+  imports: [AdminNavComponent, UserInfoComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
