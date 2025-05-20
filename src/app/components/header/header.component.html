@@ -13,8 +13,14 @@
       <br />
 
       <span class="nav-link nav-item text-wrap">
-        <span class="status-indicator open"></span>
-        Aberto
+        <span class="field" [class.field__open]="openState">
+          <span
+            class="status-indicator"
+            [class.closed]="!openState"
+            [class.open]="openState"
+          ></span>
+          <span>{{ openState ? "Aberto" : "Fechado" }}</span>
+        </span>
         <br class="d-sm-none d-block" />
         <span class="text-wrap small">
           <i class="fas fa-comment-dollar mx-sm-1 mx-0"></i> R$ 20,00 • Pedido

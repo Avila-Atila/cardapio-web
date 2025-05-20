@@ -27,6 +27,15 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'usuarios',
+    pathMatch: 'full',
+    loadComponent() {
+      return import('./pages/users/users.component').then(
+        (x) => x.UsersComponent
+      );
+    },
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '',

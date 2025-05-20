@@ -20,6 +20,15 @@
   animation: pulse-red 2s infinite;
 }
 
+.field {
+  background: #423f3f;
+  border-radius: 4px;
+  padding: 0px 10px;
+}
+.field__open {
+  background: #065206;
+}
+
 @keyframes pulse-green {
   0% {
     box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);

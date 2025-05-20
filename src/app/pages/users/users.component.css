@@ -1,0 +1,111 @@
+.animated-bg {
+  animation: gradient 15s ease infinite;
+  background: linear-gradient(-45deg, #dc3545, #974712, #343a40, #dc3545);
+  background-size: 400% 400%;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.user-card {
+  transition: all 0.3s ease;
+  border-left: 2px solid var(--primary-red);
+}
+
+.user-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-pizza {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+  color: white;
+}
+
+.btn-pizza:hover {
+  background-color: var(--dark-red);
+  border-color: var(--dark-red);
+  color: white;
+}
+
+.btn-outline-pizza {
+  color: var(--primary-red);
+  border-color: var(--primary-red);
+}
+
+.btn-outline-pizza:hover {
+  color: white;
+  background-color: var(--primary-red);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+}
+
+.badge-admin {
+  background-color: var(--primary-red);
+}
+
+.badge-manager {
+  background-color: var(--secondary-orange);
+}
+
+.badge-staff {
+  background-color: #20c997;
+}
+
+.action-icon {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-icon {
+  color: #28a745;
+}
+
+.edit-icon:hover {
+  transform: scale(1.2);
+  color: #218838;
+}
+
+.page-item.active .page-link {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+}
+
+.page-link {
+  color: var(--primary-red);
+}
+
+.search-box {
+  border-color: var(--primary-red);
+}
+
+.search-box:focus {
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.search-btn {
+  background-color: var(--primary-red);
+  color: white;
+}
+
+.search-btn:hover {
+  background-color: var(--dark-red);
+}

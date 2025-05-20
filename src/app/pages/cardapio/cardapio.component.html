@@ -10,37 +10,7 @@
   <div class="container">
     <div class="row">
       <!-- Sidebar Navigation -->
-      <div class="col-md-3 mb-4">
-        <div class="card shadow-sm">
-          <div class="card-header bg-dark text-white">
-            <h5 class="mb-0">Opções</h5>
-          </div>
-          <div class="card-body p-0">
-            <ul class="nav nav-pills flex-column">
-              <li class="nav-item">
-                <a class="nav-link active"
-                  ><i class="fas fa-utensils me-2"></i> Cardápio</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"
-                  ><i class="fas fa-users me-2"></i> Usuários</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"
-                  ><i class="fas fa-chart-line me-2"></i> Pedidos</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"
-                  ><i class="fas fa-cog me-2"></i> Configurações</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <app-admin-nav class="col-md-3 mb-4"></app-admin-nav>
 
       <!-- Main Content -->
       <div class="col-md-9">
@@ -53,6 +23,7 @@
           <div class="card-body">
             <app-current-dishes
               (edit)="openEditModal($event)"
+              (delete)="openDeleteModal($event)"
             ></app-current-dishes>
           </div>
         </div>
@@ -72,18 +43,13 @@
         </h2>
       </div>
       <div class="modal-body">
-        <form [formGroup]="editDish">
-          <div class="form-floating">
-            <input
-              class="form-control"
-              type="text"
-              formControlName="nome"
-              [attr.placeholder]=""
-            />
-            <label for="">Nome do Prato</label>
+        <form [formGroup]="editDish" (submit)="sendEditDish()">
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" formControlName="nome" />
+            <label>Nome do Prato</label>
           </div>
 
-          <div class="input-group">
+          <div class="input-group mb-3">
             <span class="input-group-text">R$</span>
             <div class="form-floating">
               <input
@@ -92,13 +58,12 @@
                 formControlName="preco"
                 min="0.01"
                 step="0.01"
-                [attr.placeholder]=""
               />
-              <label for="">Preço do Prato</label>
+              <label>Preço do Prato</label>
             </div>
           </div>
 
-          <label class="form-check-label">
+          <label class="form-check-label mb-3">
             <input
               type="checkbox"
               class="form-check-input"
@@ -116,7 +81,6 @@
               <input
                 [formControlName]="idx"
                 class="form-control"
-                [attr.placeholder]=""
                 [id]="'ing-' + idx"
               />
               <label [for]="'ing-' + idx">Ingrediente {{ idx + 1 }}</label>
@@ -143,12 +107,36 @@
               type="submit"
               class="btn btn-outline-primary"
               [disabled]="editDish.pristine"
+              [disabled]="!editDish.valid"
               data-bs-dismiss="modal"
             >
               Salvar todas as alterações
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" [id]="'deleteModal'" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="exampleModalLabel">Remover Prato?</h2>
+      </div>
+      <div class="modal-body">
+        Você realmente deseja remover esse prato? Essa ação não pode ser
+        desfeita!
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-outline-danger"
+          data-bs-dismiss="modal"
+          (click)="deleteDish()"
+        >
+          Apagar prato
+        </button>
       </div>
     </div>
   </div>

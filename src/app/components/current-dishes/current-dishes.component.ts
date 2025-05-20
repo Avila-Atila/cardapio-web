@@ -25,6 +25,7 @@ export class CurrentDishesComponent {
     });
   }
   @Output() edit = new EventEmitter<Pratos>();
+  @Output() delete = new EventEmitter<Pratos>();
   requestService = inject(PratosFirebaseService);
 
   deleteDish(id: string) {
@@ -87,7 +88,9 @@ export class CurrentDishesComponent {
   onEditClick(prato: Pratos) {
     this.edit.emit(prato);
   }
-
+  onDeleteClick(prato: Pratos) {
+    this.delete.emit(prato);
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
