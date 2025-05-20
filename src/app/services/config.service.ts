@@ -1,5 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, collectionData, Firestore } from '@angular/fire/firestore';
+import {
+  collection,
+  collectionData,
+  doc,
+  Firestore,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ConfigInterface } from '../models/config.interface';
 
@@ -14,5 +20,9 @@ export class ConfigService {
     return collectionData(this.configCollection, {
       idField: 'id',
     }) as Observable<ConfigInterface[]>;
+  }
+  updateConfig(id: string, aberto: boolean) {
+    const docRef = doc(this.firestore, 'restaurante-config', id);
+    return updateDoc(docRef, { aberto });
   }
 }

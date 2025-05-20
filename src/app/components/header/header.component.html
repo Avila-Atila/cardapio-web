@@ -71,6 +71,7 @@
             [attr.data-bs-target]="
               authService.currentUser() ? '#pedidosModal' : '#loginModal'
             "
+            (click)="onOpenOrders()"
           >
             <i class="fas fa-history me-1"></i> Pedidos
           </button>
