@@ -1,4 +1,3 @@
-// src/app/orders/orders.component.ts
 import { Component, inject } from '@angular/core';
 import {
   Firestore,
@@ -23,7 +22,6 @@ export class OrdersComponent {
   private firestore = inject(Firestore);
   private authService = inject(AuthService);
 
-  // will be set once loadOrders() runs
   orders$?: Observable<OrdersInterface[]>;
 
   loadOrders() {

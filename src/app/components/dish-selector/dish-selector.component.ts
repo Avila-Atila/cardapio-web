@@ -21,6 +21,8 @@ export class DishSelectorComponent implements OnInit {
   availableDishes = signal<Pratos[] | null>(null);
   @Input() size: 'medium' | 'large' | 'family' = 'medium';
 
+  @Input() openState: boolean | undefined = undefined;
+
   dishes = inject(PratosFirebaseService);
   cartService = inject(CartService);
   get title() {
@@ -83,7 +85,6 @@ export class DishSelectorComponent implements OnInit {
 
   checkoutPrice: number = 0;
   pizzaNames: string[] = [];
-  dishSize: string = this.title;
 
   sendToCart(infoHolder: Pratos[]) {
     infoHolder.forEach((dish) => {
@@ -93,9 +94,11 @@ export class DishSelectorComponent implements OnInit {
     const cartItem: CartItem = {
       price: this.checkoutPrice,
       dishes: this.pizzaNames,
-      dishSize: this.dishSize,
+      dishSize: this.title,
     };
 
     this.cartService.sendInfo(cartItem);
+    this.orderHolder = [];
+    this.pizzaNames = [];
   }
 }

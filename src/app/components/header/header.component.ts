@@ -15,11 +15,8 @@ export class HeaderComponent {
   authService = inject(AuthService);
   @Input() openState: boolean | undefined = undefined;
   @ViewChild(OrdersComponent) ordersComponent!: OrdersComponent;
-  ngAfterViewInit() {
-    // now this.ordersComponent is set
-  }
+  ngAfterViewInit() {}
   onOpenOrders() {
-    // this calls loadOrders() inside the child before the modal opens
     this.ordersComponent.loadOrders();
   }
 }

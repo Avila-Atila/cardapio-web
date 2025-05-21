@@ -6,8 +6,10 @@
         class="col-6 col-md-4 col-xl-3 p-1 p-sm-2"
       >
         <div class="dish-card card h-100">
-          <div class="dish-header card-header">
-            <h5 class="mb-0">{{ prato.nome }}</h5>
+          <div class="dish-header card-header header__custom">
+            <h5 class="mb-0 text-capitalize">
+              {{ prato.nome }}
+            </h5>
           </div>
           <div class="card-body flex-grow-1 px-2 text-muted small">
             {{ prato.ingredientes }}

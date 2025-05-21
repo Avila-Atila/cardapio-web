@@ -18,11 +18,13 @@
             class="list-group-item d-flex justify-content-between align-items-center"
             *ngFor="let item of cartService.currentItems()"
           >
-            <div>
+            <div class="w-75">
               <h6 class="mb-1">{{ item.dishSize }}</h6>
               <small class="text-muted"
                 >Sabores:
-                <span *ngFor="let item of item.dishes">{{ item }} </span></small
+                <span *ngFor="let item of item.dishes" class="text-capitalize"
+                  >{{ item }}
+                </span></small
               >
             </div>
             <div>

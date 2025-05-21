@@ -1,6 +1,3 @@
-:host {
-  width: 100%;
-}
 .wrapper__ingredients {
   max-height: 200px;
 }
@@ -12,7 +9,6 @@
 .delete__icon {
   cursor: pointer;
   max-width: fit-content;
-
   margin-right: 4%;
 }
 
@@ -97,4 +93,8 @@
 }
 .admin-header {
   border-bottom: 3px solid #ffc107;
+}
+
+.header__custom {
+  min-height: 64px !important;
 }

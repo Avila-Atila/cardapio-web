@@ -94,13 +94,22 @@
       <div class="row">
         <div class="row mx-0">
           <div class="col-md-4 mb-4">
-            <app-dish-selector size="medium"></app-dish-selector>
+            <app-dish-selector
+              [openState]="openState()"
+              size="medium"
+            ></app-dish-selector>
           </div>
           <div class="col-md-4 mb-4">
-            <app-dish-selector size="large"></app-dish-selector>
+            <app-dish-selector
+              [openState]="openState()"
+              size="large"
+            ></app-dish-selector>
           </div>
           <div class="col-md-4 mb-4">
-            <app-dish-selector size="family"></app-dish-selector>
+            <app-dish-selector
+              [openState]="openState()"
+              size="family"
+            ></app-dish-selector>
           </div>
         </div>
       </div>

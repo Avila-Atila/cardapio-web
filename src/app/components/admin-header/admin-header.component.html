@@ -13,7 +13,7 @@
         <span>{{ openState() ? "Aberto" : "Fechado" }}</span>
       </span>
       <button
-        class="btn btn-sm ms-2"
+        class="btn btn-sm ms-2 p-1 p-sm-2"
         [class.btn-success]="!openState()"
         [class.btn-danger]="openState()"
         (click)="updateConfig()"

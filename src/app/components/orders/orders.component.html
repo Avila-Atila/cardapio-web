@@ -1,9 +1,6 @@
-<!-- orders.component.html -->
 <div class="modal fade" id="pedidosModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- … header … -->
-
       <div class="modal-body">
         <div class="list-group">
           <ng-container *ngIf="orders$; else askToLoad">
@@ -12,9 +9,7 @@
                 <div
                   *ngFor="let order of orders"
                   class="list-group-item mb-3 rounded"
-                >
-                  <!-- … your order markup … -->
-                </div>
+                ></div>
               </div>
             </ng-container>
           </ng-container>
@@ -38,8 +33,6 @@
           </ng-template>
         </div>
       </div>
-
-      <!-- … footer … -->
     </div>
   </div>
 </div>
