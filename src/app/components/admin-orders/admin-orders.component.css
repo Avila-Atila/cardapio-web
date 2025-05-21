@@ -1,0 +1,36 @@
+.admin-header {
+  border-bottom: 3px solid #ffc107;
+}
+
+.table__header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.table__header i {
+  margin-right: 5px;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}

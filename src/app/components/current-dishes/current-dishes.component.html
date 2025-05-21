@@ -1,0 +1,41 @@
+<div class="row g-4 justify-content-center">
+  <div class="col-11 px-2 overflow-y-auto overflow-x-hidden mb-2 mb-sm-0">
+    <div class="row row-gap-2 flex-fill wrapper__menu">
+      <div
+        *ngFor="let prato of pratos()"
+        class="col-6 col-md-4 col-xl-3 p-1 p-sm-2"
+      >
+        <div class="dish-card card h-100">
+          <div class="dish-header card-header">
+            <h5 class="mb-0">{{ prato.nome }}</h5>
+          </div>
+          <div class="card-body flex-grow-1 px-2 text-muted small">
+            {{ prato.ingredientes }}
+          </div>
+          <div *ngIf="prato.disponivel">
+            <span class="badge bg-success ms-1">Disponível</span>
+          </div>
+          <div *ngIf="!prato.disponivel">
+            <span class="badge bg-danger ms-1">Indisponível</span>
+          </div>
+
+          <div>R${{ prato.preco }}</div>
+          <div class="w-100 d-flex justify-content-between">
+            <i
+              class="fas fa-edit d-inline-block edit__icon text-success"
+              (click)="onEditClick(prato)"
+              data-bs-toggle="modal"
+              data-bs-target="#editModal"
+            ></i>
+            <i
+              class="far fa-trash-alt text-danger delete__icon mb-1 d-inline-block"
+              data-bs-toggle="modal"
+              [attr.data-bs-target]="'#deleteModal'"
+              (click)="onDeleteClick(prato)"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

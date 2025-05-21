@@ -1,0 +1,30 @@
+<div class="animated-bg text-white py-3 mb-4">
+  <div class="container">
+    <h1 class="display-6 fw-bold">
+      <i class="fas fa-pizza-slice me-2"></i> Casa das Pizzas
+    </h1>
+    <div class="d-flex align-items-center">
+      <span class="field" [class.field__open]="openState()">
+        <span
+          class="status-indicator"
+          [class.closed]="!openState()"
+          [class.open]="openState()"
+        ></span>
+        <span>{{ openState() ? "Aberto" : "Fechado" }}</span>
+      </span>
+      <button
+        class="btn btn-sm ms-2"
+        [class.btn-success]="!openState()"
+        [class.btn-danger]="openState()"
+        (click)="updateConfig()"
+      >
+        {{ openState() ? "Fechar restaurante" : "Abrir restaurante" }}
+      </button>
+      <div class="ms-auto">
+        <button class="btn btn-warning" (click)="authService.logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

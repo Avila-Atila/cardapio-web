@@ -1,6 +1,89 @@
-<div class="d-flex gap-2">
-  <button class="btn btn-sm btn-light">Carrinho</button>
-  <button class="btn btn-sm btn-outline-light">Descontos</button>
-  <button class="btn btn-sm btn-outline-light">Pedidos</button>
-  <button class="btn btn-sm btn-outline-light">Perfil</button>
-</div>
+<nav
+  class="navbar navbar-expand-lg navbar-dark navbar-custom animated-bg sticky-top py-0"
+>
+  <div class="container">
+    <div class="navbar-brand">
+      <img
+        src="/logo.png"
+        alt="Logo Casa das Pizzas"
+        class="logo__header rounded-2"
+      />
+
+      <h2 class="d-inline-block m-0 px-1">Casa das Pizzas</h2>
+      <br />
+
+      <span class="nav-link nav-item text-wrap">
+        <span class="field" [class.field__open]="openState">
+          <span
+            class="status-indicator"
+            [class.closed]="!openState"
+            [class.open]="openState"
+          ></span>
+          <span>{{ openState ? "Aberto" : "Fechado" }}</span>
+        </span>
+        <br class="d-sm-none d-block" />
+        <span class="text-wrap small">
+          <i class="fas fa-comment-dollar mx-sm-1 mx-0"></i> R$ 20,00 • Pedido
+          mínimo</span
+        >
+      </span>
+    </div>
+    <button
+      class="navbar-toggler ms-auto mb-sm-0 mb-2"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li
+          class="nav-item justify-content-lg-center justify-content-end mb-2 mb-lg-0 d-flex"
+        >
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#descontosModal"
+          >
+            <i class="fas fa-tag me-1"></i> Descontos
+          </button>
+        </li>
+        <li
+          class="nav-item justify-content-lg-center justify-content-end mb-2 mb-lg-0 d-flex"
+        >
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            [attr.data-bs-target]="
+              authService.currentUser() ? '#carrinhoModal' : '#loginModal'
+            "
+          >
+            <i class="fas fa-shopping-cart me-1"></i> Carrinho
+          </button>
+        </li>
+        <li
+          class="nav-item justify-content-lg-center justify-content-end mb-2 mb-lg-0 d-flex"
+        ></li>
+        <li
+          class="nav-item justify-content-lg-center justify-content-end mb-2 mb-lg-0 d-flex"
+        >
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+            [attr.data-bs-target]="
+              authService.currentUser() ? '#perfilModal' : '#loginModal'
+            "
+          >
+            <i class="fas fa-user me-1"></i> Perfil
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<app-cart></app-cart>
+<app-orders></app-orders>
+<app-profile></app-profile>

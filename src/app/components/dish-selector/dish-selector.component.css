@@ -1,0 +1,23 @@
+.flavor-option {
+  transition: all 0.3s ease;
+}
+.flavor-option:hover {
+  background-color: #f8f9fa;
+}
+.flavor-option.selected {
+  background-color: #fff3cd;
+}
+.size-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-custom {
+  background-color: #ffc107;
+  color: #343a40;
+  border: none;
+}
+.btn-custom:hover {
+  background-color: #e0a800;
+  color: #343a40;
+}

@@ -1,7 +1,149 @@
-<div
-  class="container-fluid d-flex justify-content-end p-0 p-2 bg-gradient bg-dark"
->
-  <app-header></app-header>
+<app-header [openState]="openState()"></app-header>
+
+<div class="container-fluid p-0 mb-4">
+  <div id="pizzaCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#pizzaCarousel"
+        data-bs-slide-to="0"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#pizzaCarousel"
+        data-bs-slide-to="1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#pizzaCarousel"
+        data-bs-slide-to="2"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+          class="d-block w-100"
+          alt="Pizza Margherita"
+        />
+        <div
+          class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded"
+        >
+          <h5>Pizza Margherita</h5>
+          <p>
+            Clássica pizza italiana com molho de tomate, mussarela e manjericão
+            fresco.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1674147605295-53b30e11d8c0?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          class="d-block w-100"
+          alt="Pizza Pepperoni"
+        />
+        <div
+          class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded"
+        >
+          <h5>Pizza Pepperoni</h5>
+          <p>
+            Deliciosa pizza com pepperoni, queijo derretido e molho especial.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1581&q=80"
+          class="d-block w-100"
+          alt="Pizza Vegetariana"
+        />
+        <div
+          class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded"
+        >
+          <h5>Pizza Vegetariana</h5>
+          <p>
+            Pizza recheada com diversos vegetais frescos e queijo derretido.
+          </p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#pizzaCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#pizzaCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
 </div>
 
-<section></section>
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Escolha o Tamanho</h2>
+      <div class="row">
+        <div class="row mx-0">
+          <div class="col-md-4 mb-4">
+            <app-dish-selector size="medium"></app-dish-selector>
+          </div>
+          <div class="col-md-4 mb-4">
+            <app-dish-selector size="large"></app-dish-selector>
+          </div>
+          <div class="col-md-4 mb-4">
+            <app-dish-selector size="family"></app-dish-selector>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<div class="modal fade" id="descontosModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">Descontos e Promoções</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-warning">
+          <h6><i class="fas fa-tag me-2"></i> Cupom de Desconto</h6>
+          <p>
+            Use o cupom <strong>PIZZA10</strong> para ganhar 10% de desconto no
+            seu pedido!
+          </p>
+        </div>
+        <div class="alert alert-info">
+          <h6><i class="fas fa-star me-2"></i> Programa de Fidelidade</h6>
+          <p>A cada 10 pedidos, ganhe uma pizza média grátis!</p>
+        </div>
+        <div class="alert alert-success">
+          <h6><i class="fas fa-bolt me-2"></i> Promoção da Semana</h6>
+          <p>As sextas-feiras, todas as pizzas médias por R$ 29,90!</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

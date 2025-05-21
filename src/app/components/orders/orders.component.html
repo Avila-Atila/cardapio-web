@@ -1,0 +1,45 @@
+<!-- orders.component.html -->
+<div class="modal fade" id="pedidosModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- … header … -->
+
+      <div class="modal-body">
+        <div class="list-group">
+          <ng-container *ngIf="orders$; else askToLoad">
+            <ng-container *ngIf="orders$ | async as orders; else loading">
+              <div *ngIf="orders.length; else noOrders">
+                <div
+                  *ngFor="let order of orders"
+                  class="list-group-item mb-3 rounded"
+                >
+                  <!-- … your order markup … -->
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <ng-template #askToLoad>
+            <div class="text-center py-3 text-muted">
+              Clique em “Meus Pedidos” para carregar seus pedidos.
+            </div>
+          </ng-template>
+
+          <ng-template #loading>
+            <div class="text-center py-3">
+              <div class="spinner-border" role="status"></div>
+            </div>
+          </ng-template>
+
+          <ng-template #noOrders>
+            <div class="text-center py-3 text-muted">
+              Você ainda não fez nenhum pedido.
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- … footer … -->
+    </div>
+  </div>
+</div>

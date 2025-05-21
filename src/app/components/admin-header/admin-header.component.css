@@ -1,0 +1,43 @@
+.animated-bg {
+  animation: gradient 15s ease infinite;
+  background: linear-gradient(-45deg, #dc3545, #974712, #343a40, #dc3545);
+  background-size: 400% 400%;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.open {
+  background-color: #28a745;
+  box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  animation: pulse-green 2s infinite;
+}
+.closed {
+  background-color: #dc3545;
+  box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+  animation: pulse-red 2s infinite;
+}
+
+.field {
+  background: #423f3f;
+  border-radius: 4px;
+  padding: 0px 10px;
+}
+.field__open {
+  background: #065206;
+}

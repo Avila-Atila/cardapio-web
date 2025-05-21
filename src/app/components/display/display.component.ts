@@ -1,8 +1,6 @@
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { Pratos } from '../../models/pratos.interface';
 import { CommonModule } from '@angular/common';
-import { PratosFirebaseService } from '../../services/pratos-firebase.service';
-import { Subject } from 'rxjs';
 import {
   FormArray,
   FormControl,
@@ -10,88 +8,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CurrentDishesComponent } from '../current-dishes/current-dishes.component';
+import { AddDishFormComponent } from '../add-dish-form/add-dish-form.component';
 
 @Component({
   selector: 'app-display',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CurrentDishesComponent,
+    AddDishFormComponent,
+  ],
   templateUrl: './display.component.html',
   styleUrl: './display.component.css',
 })
-export class DisplayComponent implements OnInit, OnDestroy {
-  requestService = inject(PratosFirebaseService);
-  ngOnInit(): void {
-    this.requestService.getPratos().subscribe((resp) => {
-      this.pratos.set(resp);
-    });
-  }
-
-  private destroy$ = new Subject<void>();
-  pratos = signal<Pratos[] | null>(null);
-
-  mostrar() {
-    console.log(this.pratos());
-  }
-
-  adicionarPrato = new FormGroup({
-    nome: new FormControl(''),
-    preco: new FormControl<number>(0, {
-      nonNullable: true,
-      validators: [Validators.required, Validators.min(0.01)],
-    }),
-    disponivel: new FormControl<boolean>(true),
-    ingredientes: new FormArray<FormControl<string>>([
-      new FormControl<string>('', {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-    ]),
-  });
-
-  get ingredientesArray() {
-    return this.adicionarPrato.get('ingredientes') as FormArray<
-      FormControl<string>
-    >;
-  }
-
-  addIngredient() {
-    this.ingredientesArray.push(
-      new FormControl<string>('', {
-        nonNullable: true,
-        validators: [Validators.required],
-      })
-    );
-  }
-
-  removeIngredient(index: number) {
-    this.ingredientesArray.removeAt(index);
-  }
-
-  teste(info: FormGroup) {
-    let novoPrato: Pratos = {
-      nome: info.get('nome')!.value,
-      preco: info.get('preco')!.value,
-      disponivel: info.get('disponivel')!.value,
-      ingredientes: info.get('ingredientes')!.value,
-    };
-    this.requestService
-      .addPrato(novoPrato)
-      .then((docRef) => console.log('adicionado:', docRef.id))
-      .catch((error) => console.error('erro:', error));
-  }
-
-  teste2(id: string) {
-    this.requestService
-      .deletePrato(id)
-      .then(() => console.log('deletado'))
-      .catch((err) => console.error('erro:', err));
-  }
-
-  teste3(id: string, preco: number) {
-    this.requestService.updatePratoPreco(id, preco);
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-}
+export class DisplayComponent {}

@@ -1,0 +1,107 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-header admin-header bg-dark text-white">
+    <h3 class="mb-0">
+      <i class="fas fa-clipboard-list me-2"></i> Histórico de Pedidos
+    </h3>
+  </div>
+  <div class="card-body">
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="btn-group">
+          <button
+            class="btn btn-outline-dark active"
+            [class.active]="filter() === 'all'"
+            (click)="showAllOrders()"
+          >
+            Todos
+          </button>
+          <button
+            class="btn btn-outline-dark"
+            [class.active]="filter() === 'completed'"
+            (click)="showCompletedOrders()"
+          >
+            Completos
+          </button>
+          <button
+            class="btn btn-outline-dark"
+            [class.active]="filter() === 'pending'"
+            (click)="showCurrentOrders()"
+          >
+            Pendentes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group">
+      <div
+        *ngFor="let order of orders$ | async"
+        class="list-group-item order-card mb-2 rounded"
+        [hidden]="!shouldShow(order)"
+      >
+        <div
+          class="d-block d-sm-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h5 class="mb-1">Pedido #{{ order.uid }}</h5>
+            <small class="text-muted">
+              <i class="fa-solid fa-user"></i> {{ order.ownerId }} <br />
+              <i class="fa-solid fa-house-user"></i> {{ order.address }}
+            </small>
+          </div>
+          <div class="text-center">
+            <div
+              class="status-badge mb-1"
+              [ngClass]="{
+                completed: order.complete,
+                pending: !order.complete
+              }"
+            >
+              {{ order.complete ? "Completo" : "Pendente" }}
+            </div>
+            <div class="text-muted">
+              <small>
+                <i class="fas fa-clock me-1"></i>
+                {{ order.time.toDate() | date : "dd/MM/yyyy - HH:mm" }}
+              </small>
+            </div>
+          </div>
+        </div>
+        <div></div>
+        <div class="mt-2">
+          <span class="text-capitalize me-2">
+            <i class="fas fa-pizza-slice"></i> {{ order.type }}</span
+          >
+          <span
+            *ngFor="let ingr of order.flavors"
+            class="badge bg-warning text-dark me-1"
+          >
+            {{ ingr }}
+          </span>
+          <ng-content *ngIf="order.drinks">
+            <br />
+            <i class="fa-solid fa-wine-bottle"></i>
+            Bebidas
+            <span
+              *ngFor="let drink of order.drinks"
+              class="badge bg-warning-subtle text-dark me-1"
+              >{{ drink }}</span
+            ></ng-content
+          >
+        </div>
+        <div class="mt-2 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="fw-bold">Total: R$ {{ order.price }}</span>
+          </div>
+          <button
+            class="btn btn-sm btn-outline-success"
+            *ngIf="!order.complete"
+            (click)="completeOrder(order.uid)"
+          >
+            Completar pedido
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

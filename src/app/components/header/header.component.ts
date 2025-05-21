@@ -1,11 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input, input, ViewChild } from '@angular/core';
+import { ProfileComponent } from '../profile/profile.component';
+import { AuthService } from '../../services/auth.service';
+import { CartComponent } from '../cart/cart.component';
+import { OrdersComponent } from '../orders/orders.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [ProfileComponent, CartComponent, OrdersComponent, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-
+  authService = inject(AuthService);
+  @Input() openState: boolean | undefined = undefined;
+  @ViewChild(OrdersComponent) ordersComponent!: OrdersComponent;
+  ngAfterViewInit() {
+    // now this.ordersComponent is set
+  }
+  onOpenOrders() {
+    // this calls loadOrders() inside the child before the modal opens
+    this.ordersComponent.loadOrders();
+  }
 }
