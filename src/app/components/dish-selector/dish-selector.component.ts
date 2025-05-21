@@ -42,7 +42,7 @@ export class DishSelectorComponent implements OnInit {
   }
 
   get price() {
-    return this.size === 'medium' ? 32 : this.size === 'large' ? 40 : 48;
+    return this.size === 'medium' ? 32 : this.size === 'large' ? 48 : 64;
   }
 
   get iconClass() {
@@ -73,14 +73,12 @@ export class DishSelectorComponent implements OnInit {
   orderHolder: Pratos[] = [];
   sendToHolder(info: Pratos) {
     this.orderHolder!.push(info);
-    console.log(this.orderHolder);
   }
   removeFromHolder(info: Pratos) {
     const idx = this.orderHolder!.findIndex((el) => el.nome === info.nome);
     if (idx > -1) {
       this.orderHolder!.splice(idx, 1);
     }
-    console.log(this.orderHolder);
   }
 
   checkoutPrice: number = 0;
@@ -98,7 +96,12 @@ export class DishSelectorComponent implements OnInit {
     };
 
     this.cartService.sendInfo(cartItem);
+    this.pizzaNames.forEach((element) => {
+      this.dec(element);
+    });
+    this.checkoutPrice = 0;
     this.orderHolder = [];
+
     this.pizzaNames = [];
   }
 }
