@@ -1,11 +1,9 @@
-/* dish-selector.component.ts */
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-
-interface SizeConfig {
-  slices: number;
-  maxFlavors: number;
-}
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
+import { PratosFirebaseService } from '../../services/pratos-firebase.service';
+import { Pratos } from '../../models/pratos.interface';
+import { CartService } from '../../services/cart.service';
+import { CartItem } from '../../models/cart-item';
 
 @Component({
   selector: 'app-dish-selector',
@@ -13,10 +11,18 @@ interface SizeConfig {
   styleUrls: ['./dish-selector.component.css'],
   imports: [CommonModule],
 })
-export class DishSelectorComponent {
+export class DishSelectorComponent implements OnInit {
+  ngOnInit(): void {
+    this.dishes.getPratos().subscribe({
+      next: (resp) => this.availableDishes.set(resp),
+      error: (err) => alert(err),
+    });
+  }
+  availableDishes = signal<Pratos[] | null>(null);
   @Input() size: 'medium' | 'large' | 'family' = 'medium';
 
-  // determine display text
+  dishes = inject(PratosFirebaseService);
+  cartService = inject(CartService);
   get title() {
     return this.size === 'medium'
       ? 'Pizza Média'
@@ -25,22 +31,18 @@ export class DishSelectorComponent {
       : 'Pizza família';
   }
 
-  // number of slices (optional, if you want to show it)
   get slices() {
     return this.size === 'medium' ? 6 : this.size === 'large' ? 9 : 12;
   }
 
-  // max flavors per size
   get maxFlavors() {
     return this.size === 'medium' ? 2 : this.size === 'large' ? 3 : 4;
   }
 
-  // price per size
   get price() {
     return this.size === 'medium' ? 32 : this.size === 'large' ? 40 : 48;
   }
 
-  // for the icon color/scale you can also use size
   get iconClass() {
     return {
       medium: 'text-primary',
@@ -48,27 +50,6 @@ export class DishSelectorComponent {
       family: 'text-danger',
     }[this.size];
   }
-
-  // flavor data
-  flavors = [
-    {
-      name: 'Margherita',
-      desc: 'Molho de tomate, mussarela, manjericão e azeite.',
-    },
-    { name: 'Pepperoni', desc: 'Molho de tomate, mussarela e pepperoni.' },
-    {
-      name: 'Calabresa',
-      desc: 'Molho de tomate, mussarela, calabresa e cebola.',
-    },
-    {
-      name: 'Quatro Queijos',
-      desc: 'Molho de tomate, mussarela, provolone, parmesão, gorgonzola.',
-    },
-    {
-      name: 'Portuguesa',
-      desc: 'Molho de tomate, mussarela, presunto, ovos, cebola, azeitonas.',
-    },
-  ];
 
   counts: Record<string, number> = {};
   totalSelected = 0;
@@ -86,6 +67,36 @@ export class DishSelectorComponent {
       this.totalSelected--;
     }
   }
-}
 
-/* dish-selector.component.html */
+  orderHolder: Pratos[] = [];
+  sendToHolder(info: Pratos) {
+    this.orderHolder!.push(info);
+    console.log(this.orderHolder);
+  }
+  removeFromHolder(info: Pratos) {
+    const idx = this.orderHolder!.findIndex((el) => el.nome === info.nome);
+    if (idx > -1) {
+      this.orderHolder!.splice(idx, 1);
+    }
+    console.log(this.orderHolder);
+  }
+
+  checkoutPrice: number = 0;
+  pizzaNames: string[] = [];
+  dishSize: string = this.title;
+
+  sendToCart(infoHolder: Pratos[]) {
+    infoHolder.forEach((dish) => {
+      this.checkoutPrice += dish.preco;
+      this.pizzaNames.push(dish.nome);
+    });
+    const cartItem: CartItem = {
+      price: this.checkoutPrice,
+      dishes: this.pizzaNames,
+      dishSize: this.dishSize,
+    };
+
+    // 5) send it
+    this.cartService.sendInfo(cartItem);
+  }
+}

@@ -4,12 +4,11 @@ import {
   collectionData,
   deleteDoc,
   doc,
-  docData,
   Firestore,
 } from '@angular/fire/firestore';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Pratos } from '../models/pratos.interface';
-import { addDoc, setDoc, updateDoc } from '@firebase/firestore';
+import { addDoc, setDoc } from '@firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -34,13 +33,8 @@ export class PratosFirebaseService {
   }
 
   updatePrato(prato: Pratos) {
-    // extract the id so we don't write it into Firestore:
     const { id, ...data } = prato;
-
-    // no generic here—just point at the path
     const pratoRef = doc(this.firestore, 'pratos', id!);
-
-    // this replaces the document with `data` (all fields from your interface minus `id`)
     return setDoc(pratoRef, data);
   }
 }
