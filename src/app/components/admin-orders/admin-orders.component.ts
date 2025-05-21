@@ -41,7 +41,6 @@ export class AdminOrdersComponent {
     this.ordersService
       .completeOrder(orderId)
       .then(() => {
-        // optionally show a toast or re-fetch, etc.
         console.log(`Order ${orderId} marked complete`);
       })
       .catch((err) => console.error(err));

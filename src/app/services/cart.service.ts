@@ -12,21 +12,19 @@ export class CartService {
   }
 
   removeItem(itemToRemove: CartItem) {
-    this.currentItems.update(items => {
+    this.currentItems.update((items) => {
       const index = items.findIndex(
-        item =>
+        (item) =>
           item.price === itemToRemove.price &&
           item.dishSize === itemToRemove.dishSize &&
           JSON.stringify(item.dishes) === JSON.stringify(itemToRemove.dishes)
       );
-  
+
       if (index === -1) return items;
-  
-      // Create a shallow copy, remove the item, return updated array
+
       const updated = [...items];
       updated.splice(index, 1);
       return updated;
     });
   }
-  
 }

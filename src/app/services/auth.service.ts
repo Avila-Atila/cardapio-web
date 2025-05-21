@@ -2,6 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -19,13 +20,28 @@ import {
   throwError,
 } from 'rxjs';
 import { UserInfoInterface } from '../models/user-info.interface';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private auth = inject(Auth);
   private firestore = inject(Firestore);
-
+  isLoggingOut = false;
   currentUser = signal<UserInfoInterface | null>(null);
+
+  constructor(private router: Router) {
+    onAuthStateChanged(this.auth, (user: User | null) => {
+      if (this.isLoggingOut) return;
+      if (user) {
+        document.getElementById('login__form__close')?.click();
+        if (user.email === 'admin@teste.com') {
+          this.router.navigate(['/cardapio']);
+        }
+      } else if (user) {
+        this.router.navigate(['/home']);
+      }
+    });
+  }
 
   login(email: string, password: string): Observable<UserInfoInterface> {
     return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
@@ -76,11 +92,14 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<void> {
-    return from(signOut(this.auth)).pipe(
-      tap(() => {
+  logout(): void {
+    signOut(this.auth)
+      .then(() => {
         this.currentUser.set(null);
+        this.router.navigate(['/']);
       })
-    );
+      .catch((error) => {
+        console.error('Logout failed:', error);
+      });
   }
 }

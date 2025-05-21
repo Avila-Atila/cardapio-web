@@ -96,7 +96,6 @@ export class DishSelectorComponent implements OnInit {
       dishSize: this.dishSize,
     };
 
-    // 5) send it
     this.cartService.sendInfo(cartItem);
   }
 }

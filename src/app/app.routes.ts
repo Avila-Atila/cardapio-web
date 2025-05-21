@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -9,17 +10,9 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'admin',
-    pathMatch: 'full',
-    loadComponent() {
-      return import('./pages/admin/admin.component').then(
-        (x) => x.AdminComponent
-      );
-    },
-  },
-  {
     path: 'cardapio',
     pathMatch: 'full',
+    canActivate: [adminGuard],
     loadComponent() {
       return import('./pages/cardapio/cardapio.component').then(
         (x) => x.CardapioComponent
@@ -28,7 +21,9 @@ export const routes: Routes = [
   },
   {
     path: 'usuarios',
+
     pathMatch: 'full',
+    canActivate: [adminGuard],
     loadComponent() {
       return import('./pages/users/users.component').then(
         (x) => x.UsersComponent
@@ -38,6 +33,7 @@ export const routes: Routes = [
   {
     path: 'pedidos',
     pathMatch: 'full',
+    canActivate: [adminGuard],
     loadComponent() {
       return import('./pages/pedidos/pedidos.component').then(
         (x) => x.PedidosComponent

@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import {
   Firestore,
+  addDoc,
   collection,
   collectionData,
   doc,
@@ -20,6 +21,11 @@ export class OrdersService {
     return collectionData(pedidosCol, { idField: 'uid' }) as Observable<
       OrdersInterface[]
     >;
+  }
+
+  addOrder(order: OrdersInterface) {
+    const pedidosRef = collection(this.firestore, 'pedidos');
+    return addDoc(pedidosRef, order);
   }
 
   completeOrder(orderId: string) {

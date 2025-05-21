@@ -80,9 +80,6 @@ export class ProfileComponent {
   }
 
   logout() {
-    this.authService.logout().subscribe({
-      next: () => window.location.reload(),
-      error: (err) => alert(err),
-    });
+    this.authService.logout();
   }
 }

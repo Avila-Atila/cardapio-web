@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-header',
@@ -14,6 +15,7 @@ export class AdminHeaderComponent implements OnInit {
       this.openState.set(resp[0].aberto);
     });
   }
+  authService = inject(AuthService);
   private configId!: string;
   openState = signal<boolean>(false);
   configService = inject(ConfigService);

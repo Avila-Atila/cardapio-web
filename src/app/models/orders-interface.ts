@@ -6,7 +6,7 @@ export interface OrdersInterface {
   complete: boolean;
   price: number;
   time: Timestamp;
-  type: 'media' | 'grande' | 'família';
+  type?: 'media' | 'grande' | 'família';
   uid: string;
   flavors: string[];
   drinks?: string[];

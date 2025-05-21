@@ -20,6 +20,11 @@
       >
         {{ openState() ? "Fechar restaurante" : "Abrir restaurante" }}
       </button>
+      <div class="ms-auto">
+        <button class="btn btn-warning" (click)="authService.logout()">
+          Logout
+        </button>
+      </div>
     </div>
   </div>
 </div>
