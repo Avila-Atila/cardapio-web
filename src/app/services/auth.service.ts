@@ -97,6 +97,7 @@ export class AuthService {
       .then(() => {
         this.currentUser.set(null);
         this.router.navigate(['/']);
+        window.location.reload();
       })
       .catch((error) => {
         console.error('Logout failed:', error);
