@@ -35,7 +35,7 @@ export class AuthService {
       if (user) {
         document.getElementById('login__form__close')?.click();
         if (user.email === 'admin@teste.com') {
-          this.router.navigate(['/cardapio']);
+          this.router.navigate(['/pedidos']);
         }
       } else if (user) {
         this.router.navigate(['/home']);

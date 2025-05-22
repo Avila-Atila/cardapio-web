@@ -4,6 +4,13 @@
   </div>
   <div class="card-body p-0">
     <ul class="nav nav-pills flex-column">
+      <li
+        class="nav-item"
+        [routerLink]="['/pedidos']"
+        [class.active]="router.isActive('/pedidos', true)"
+      >
+        <a class="nav-link"><i class="fas fa-chart-line me-2"></i> Pedidos</a>
+      </li>
       <li class="nav-item" [class.active]="router.isActive('/cardapio', true)">
         <a class="nav-link" [routerLink]="['/cardapio']"
           ><i class="fas fa-utensils me-2"></i> Cardápio</a
@@ -15,13 +22,6 @@
         [class.active]="router.isActive('/usuarios', true)"
       >
         <a class="nav-link"><i class="fas fa-users me-2"></i> Usuários</a>
-      </li>
-      <li
-        class="nav-item"
-        [routerLink]="['/pedidos']"
-        [class.active]="router.isActive('/pedidos', true)"
-      >
-        <a class="nav-link"><i class="fas fa-chart-line me-2"></i> Pedidos</a>
       </li>
     </ul>
   </div>
