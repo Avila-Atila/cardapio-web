@@ -7,6 +7,7 @@ import { OrdersInterface } from '../../models/orders-interface';
 import { Timestamp } from '@angular/fire/firestore';
 import { OrdersService } from '../../services/orders.service';
 import { Flavors } from '../../models/flavors';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,6 +19,7 @@ export class CartComponent {
   cartService = inject(CartService);
   authService = inject(AuthService);
   orderService = inject(OrdersService);
+  usersService = inject(UsersService);
   totalPrice = computed(() =>
     this.cartService.currentItems().reduce((sum, item) => sum + item.price, 0)
   );
@@ -43,6 +45,7 @@ export class CartComponent {
       time: Timestamp.now(),
     };
     this.orderService.addOrder(order);
+    this.usersService.incrementOrdersCount(uid!);
     this.cartService.currentItems.set([]);
   }
 }

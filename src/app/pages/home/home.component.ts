@@ -2,7 +2,6 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { DishSelectorComponent } from '../../components/dish-selector/dish-selector.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { Observable } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 
 @Component({

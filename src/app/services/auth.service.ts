@@ -84,6 +84,7 @@ export class AuthService {
           address,
           tel,
           orders: 0,
+          orderInfo: [],
         };
         return from(setDoc(userRef, data));
       }),

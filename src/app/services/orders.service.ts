@@ -5,7 +5,9 @@ import {
   collection,
   collectionData,
   doc,
+  query,
   updateDoc,
+  where,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { OrdersInterface } from '../models/orders-interface';
@@ -30,7 +32,12 @@ export class OrdersService {
 
   completeOrder(orderId: string) {
     const orderDocRef = doc(this.firestore, 'pedidos', orderId);
-
     return updateDoc(orderDocRef, { complete: true });
+  }
+
+  getOrdersByUser(uid: string): Observable<OrdersInterface[]> {
+    const pedidosCol = collection(this.firestore, 'pedidos');
+    const q = query(pedidosCol, where('uid', '==', uid));
+    return collectionData(q) as Observable<OrdersInterface[]>;
   }
 }

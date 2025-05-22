@@ -5,4 +5,5 @@ export interface UserInfoInterface {
   tel: string;
   uid: string;
   orders: number;
+  orderInfo: string[];
 }

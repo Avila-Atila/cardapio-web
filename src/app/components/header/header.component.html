@@ -96,5 +96,5 @@
 </nav>
 
 <app-cart></app-cart>
-<app-orders></app-orders>
+<app-orders [uid]="authService.currentUser()?.uid"></app-orders>
 <app-profile></app-profile>

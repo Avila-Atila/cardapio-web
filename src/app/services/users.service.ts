@@ -1,6 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { UserInfo } from '@angular/fire/auth';
-import { collection, collectionData, Firestore } from '@angular/fire/firestore';
+import {
+  collection,
+  collectionData,
+  doc,
+  Firestore,
+  increment,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { UserInfoInterface } from '../models/user-info.interface';
 
@@ -14,5 +21,9 @@ export class UsersService {
     return collectionData(usersCol, { idField: 'uid' }) as Observable<
       UserInfoInterface[]
     >;
+  }
+  incrementOrdersCount(uid: string) {
+    const userDoc = doc(this.firestore, 'users', uid);
+    return updateDoc(userDoc, { orders: increment(1) });
   }
 }

@@ -7,7 +7,6 @@ export interface OrdersInterface {
   complete: boolean;
   price: number;
   time: Timestamp;
-
   uid: string;
   flavors: Flavors[];
   drinks?: string[];

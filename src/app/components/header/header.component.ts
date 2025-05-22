@@ -1,4 +1,4 @@
-import { Component, inject, Input, input, ViewChild } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ProfileComponent } from '../profile/profile.component';
 import { AuthService } from '../../services/auth.service';
 import { CartComponent } from '../cart/cart.component';
@@ -14,9 +14,4 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   authService = inject(AuthService);
   @Input() openState: boolean | undefined = undefined;
-  @ViewChild(OrdersComponent) ordersComponent!: OrdersComponent;
-  ngAfterViewInit() {}
-  onOpenOrders() {
-    this.ordersComponent.loadOrders();
-  }
 }

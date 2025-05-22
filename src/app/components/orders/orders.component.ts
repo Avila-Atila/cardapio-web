@@ -1,15 +1,9 @@
-import { Component, inject } from '@angular/core';
-import {
-  Firestore,
-  collection,
-  query,
-  where,
-  collectionData,
-} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { OrdersInterface } from '../../models/orders-interface';
+import { Component, inject, Input, input, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { OrdersService } from '../../services/orders.service';
+import { map, Observable, of } from 'rxjs';
+import { OrdersInterface } from '../../models/orders-interface';
 
 @Component({
   selector: 'app-orders',
@@ -19,27 +13,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./orders.component.css'],
 })
 export class OrdersComponent {
-  private firestore = inject(Firestore);
-  private authService = inject(AuthService);
+  private _uid?: string;
+  orders$!: Observable<OrdersInterface[]>;
 
-  orders$?: Observable<OrdersInterface[]>;
+  private ordersService = inject(OrdersService);
 
-  loadOrders() {
-    const uid = this.authService.currentUser()?.uid;
-    if (!uid) {
-      console.warn('Usuário não logado — não carregando pedidos.');
-      return;
+  @Input()
+  set uid(value: string | undefined) {
+    this._uid = value;
+    if (this._uid) {
+      this.orders$ = this.ordersService.getOrdersByUser(this._uid);
+    } else {
+      this.orders$ = of([]);
     }
-
-    const pedidosRef = collection(this.firestore, 'pedidos');
-    const pedidosQuery = query(pedidosRef, where('ownerId', '==', uid));
-
-    this.orders$ = collectionData(pedidosQuery, {
-      idField: 'uid',
-    }) as Observable<OrdersInterface[]>;
-  }
-
-  reorder(order: OrdersInterface) {
-    console.log('Re-ordering', order.uid);
   }
 }
