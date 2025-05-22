@@ -1,59 +1,82 @@
-# CardapioWeb
+# Cardápio Web — Casa das Pizzas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+Um sistema de gerenciamento de pedidos para pizzaria, desenvolvido com Angular 19 (Standalone Components) e Firebase (Firestore e Auth).
 
-## Development server
+> **Link do projeto:** [cardapio-web.vercel.app](https://web-cardapio-chi.vercel.app)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 📂 Estrutura do Repositório
+
+```
+├─ public/                # Arquivos estáticos (index.html, assets)
+├─ src/
+│  ├─ app/
+│  │  ├─ components/
+│  │  │  ├─ header/        # Navbar e modais (Perfil, Carrinho, Pedidos, Descontos)
+│  │  │  ├─ cart/          # Lógica de carrinho de compras
+│  │  │  ├─ orders/        # Modal de exibição de pedidos do usuário
+│  │  │  ├─ profile/       # Componente de perfil do usuário
+│  │  │  └─ auth/          # Login e Registro
+│  │  ├─ services/
+│  │  │  ├─ auth.service.ts    # Firebase Auth
+│  │  │  ├─ cart.service.ts    # Estado do carrinho (RxJS)
+│  │  │  ├─ orders.service.ts  # CRUD de pedidos (Firestore)
+│  │  │  └─ user.service.ts    # Atualizações de usuário (incremento de pedidos)
+│  │  └─ models/
+│  │     ├─ orders-interface.ts
+│  │     ├─ user-info-interface.ts
+│  │     └─ flavors.ts
+│  ├─ assets/              # Imagens, ícones e CSS global
+│  └─ main.ts              # Bootstrap da aplicação
+├─ angular.json            # Configuração do Angular CLI v19.2.11
+├─ package.json            # Dependências e scripts
+└─ README.md               # (Você está aqui)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Tecnologias
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+* **Framework:** Angular 19 (Standalone Components)
+* **UI:** Bootstrap 5
+* **Backend:** Firebase Firestore & Firebase Auth
+* **State Management:** RxJS BehaviorSubjects
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🔧 Instalação e Execução
 
-## Building
+1. Clone o repositório:
 
-To build the project run:
+   ```bash
+   git clone https://github.com/Avila-Atila/cardapio-web.git
+   cd cardapio-web
+   ```
 
-```bash
-ng build
-```
+2. Instale dependências:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   ```bash
+   npm install
+   ```
 
-## Running unit tests
+3. Inicie o servidor local:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+   ```bash
+   npm run start
+   ```
 
-```bash
-ng test
-```
+4. Acesse `http://localhost:4200/`.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## ⚙️ Funcionalidades Principais
 
-```bash
-ng e2e
-```
+* **Registro e Login** de usuários (com validação de email/senha).
+* **Carrinho de Compras** reativo, com gerenciamento via `cart.service`.
+* **Histórico de Pedidos**: modal que lista todos os pedidos filtrados pelo UID do usuário.
+* **Contador de Pedidos**: campo `orders` atualizado atômica no perfil do usuário.
+* **Painel de administrador completo**: Opção de criar/ler/editar/remover pratos do cardápio, verificar informações dos usuários cadastrados, atualizar pedidos em tempo real, controlar o estado de aberto/fechado do restaurante, e muito mais.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
