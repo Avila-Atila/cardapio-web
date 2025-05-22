@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { OrdersInterface } from '../../models/orders-interface';
 import { Timestamp } from '@angular/fire/firestore';
 import { OrdersService } from '../../services/orders.service';
+import { Flavors } from '../../models/flavors';
 
 @Component({
   selector: 'app-cart',
@@ -28,10 +29,10 @@ export class CartComponent {
     const address = this.authService.currentUser()?.address;
     const uid = this.authService.currentUser()?.uid;
     const ownerId = this.authService.currentUser()?.name;
-    const flavors: string[] = [];
-    this.cartService.currentItems().forEach((element) => {
-      flavors.push(element.dishes[0]);
-    });
+    const flavors: Flavors[] = this.cartService.currentItems().map((item) => ({
+      dishes: item.dishes,
+    }));
+
     const order: OrdersInterface = {
       address: address!,
       uid: uid!,
@@ -42,5 +43,6 @@ export class CartComponent {
       time: Timestamp.now(),
     };
     this.orderService.addOrder(order);
+    this.cartService.currentItems.set([]);
   }
 }

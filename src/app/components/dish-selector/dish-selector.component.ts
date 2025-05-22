@@ -33,6 +33,7 @@ export class DishSelectorComponent implements OnInit {
       : 'Pizza família';
   }
 
+  subTotal: number = 0;
   get slices() {
     return this.size === 'medium' ? 6 : this.size === 'large' ? 9 : 12;
   }
@@ -56,17 +57,21 @@ export class DishSelectorComponent implements OnInit {
   counts: Record<string, number> = {};
   totalSelected = 0;
 
-  inc(flavor: string) {
+  inc(flavor: string, price: number) {
     if (this.totalSelected < this.maxFlavors) {
       this.counts[flavor] = (this.counts[flavor] || 0) + 1;
       this.totalSelected++;
+      this.subTotal += price;
     }
   }
 
-  dec(flavor: string) {
+  dec(flavor: string, price?: number) {
     if ((this.counts[flavor] || 0) > 0) {
       this.counts[flavor]!--;
       this.totalSelected--;
+      if (price) {
+        this.subTotal -= price;
+      }
     }
   }
 
@@ -100,6 +105,7 @@ export class DishSelectorComponent implements OnInit {
       this.dec(element);
     });
     this.checkoutPrice = 0;
+    this.subTotal = 0;
     this.orderHolder = [];
 
     this.pizzaNames = [];

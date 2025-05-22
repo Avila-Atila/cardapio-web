@@ -41,7 +41,7 @@ export class AdminOrdersComponent {
     this.ordersService
       .completeOrder(orderId)
       .then(() => {
-        console.log(`Order ${orderId} marked complete`);
+        console.log(`teste ${orderId} concluido  `);
       })
       .catch((err) => console.error(err));
   }

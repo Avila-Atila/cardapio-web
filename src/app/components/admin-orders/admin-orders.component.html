@@ -68,16 +68,20 @@
           </div>
         </div>
 
-        <div class="mt-2">
-          <span class="text-capitalize me-2">
-            <i class="fas fa-pizza-slice"></i> {{ order.type }}</span
-          >
-          <span
-            *ngFor="let ingr of order.flavors"
-            class="badge bg-warning text-dark me-1"
-          >
-            {{ ingr }}
-          </span>
+        <div>
+          <span class="text-capitalize"> </span>
+          <div *ngFor="let grupo of order.flavors; let i = index">
+            <div>
+              <i class="fas fa-pizza-slice"></i>
+              <span
+                *ngFor="let sabor of grupo.dishes"
+                class="badge bg-warning text-dark me-1"
+              >
+                {{ sabor }}
+              </span>
+            </div>
+          </div>
+
           <ng-content *ngIf="order.drinks">
             <br />
             <i class="fa-solid fa-wine-bottle"></i>

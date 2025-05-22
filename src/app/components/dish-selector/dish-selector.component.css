@@ -21,3 +21,7 @@
   background-color: #e0a800;
   color: #343a40;
 }
+
+.wrapper__flavors {
+  max-height: 300px;
+}

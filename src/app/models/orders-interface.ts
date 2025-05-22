@@ -1,4 +1,5 @@
 import { Timestamp } from '@angular/fire/firestore';
+import { Flavors } from './flavors';
 
 export interface OrdersInterface {
   address: string;
@@ -6,8 +7,8 @@ export interface OrdersInterface {
   complete: boolean;
   price: number;
   time: Timestamp;
-  type?: 'media' | 'grande' | 'família';
+
   uid: string;
-  flavors: string[];
+  flavors: Flavors[];
   drinks?: string[];
 }

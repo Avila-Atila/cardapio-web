@@ -50,9 +50,10 @@
         </button>
         <button
           type="button"
-          class="btn btn-custom"
+          class="btn btn-outline-success"
           (click)="setOrder()"
           data-bs-dismiss="modal"
+          [disabled]="cartService.currentItems().length === 0"
         >
           Finalizar Pedido
         </button>
