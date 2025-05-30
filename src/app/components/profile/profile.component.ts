@@ -8,10 +8,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NgxMaskDirective],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -20,7 +21,7 @@ export class ProfileComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
+      Validators.minLength(3),
     ]),
     name: new FormControl(''),
     address: new FormControl(''),

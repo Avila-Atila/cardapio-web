@@ -112,7 +112,10 @@
         </div>
         <div class="mt-2 d-flex justify-content-between align-items-center">
           <div>
-            <span class="fw-bold">Total: R$ {{ order.price }}</span>
+            <span class="fw-bold"
+              >Total:
+              {{ order.price | currency : "BRL" : "symbol" : "1.2-2" }}</span
+            >
           </div>
           <div class="d-flex align-items-end">
             <button

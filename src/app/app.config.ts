@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAX-q6KcC784RkeZV5A23_TmnZZlXqg8Wo',
@@ -25,5 +26,6 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    provideEnvironmentNgxMask(),
   ],
 };

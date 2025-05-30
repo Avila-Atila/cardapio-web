@@ -49,19 +49,7 @@
             <i class="fas fa-tag me-1"></i> Descontos
           </button>
         </li>
-        <li
-          class="nav-item justify-content-lg-center justify-content-end mb-2 mb-lg-0 d-flex"
-        >
-          <button
-            class="btn btn-sm btn-custom ms-2"
-            data-bs-toggle="modal"
-            [attr.data-bs-target]="
-              authService.currentUser() ? '#pedidosModal' : '#loginModal'
-            "
-          >
-            <i class="fas fa-clipboard-check me-1"></i> Pedidos
-          </button>
-        </li>
+
         <li
           class="nav-item justify-content-lg-center justify-content-end mb-2 mb-lg-0 d-flex"
         >
@@ -73,6 +61,19 @@
             "
           >
             <i class="fas fa-shopping-cart me-1"></i> Carrinho
+          </button>
+        </li>
+        <li
+          class="nav-item justify-content-lg-center justify-content-end mb-2 mb-lg-0 d-flex"
+        >
+          <button
+            class="btn btn-sm btn-custom ms-2"
+            data-bs-toggle="modal"
+            [attr.data-bs-target]="
+              authService.currentUser() ? '#pedidosModal' : '#loginModal'
+            "
+          >
+            <i class="fas fa-clipboard-check me-1"></i> Pedidos
           </button>
         </li>
 
