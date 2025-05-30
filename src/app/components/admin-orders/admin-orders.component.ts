@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { OrdersInterface } from '../../models/orders-interface';
 import { OrdersService } from '../../services/orders.service';
 import { CommonModule } from '@angular/common';
-type Filter = 'all' | 'completed' | 'pending';
+type Filter = 'all' | 'completed' | 'pending' | 'canceled';
 @Component({
   selector: 'app-admin-orders',
   imports: [CommonModule],
@@ -28,12 +28,16 @@ export class AdminOrdersComponent {
   showCurrentOrders() {
     this.filter.set('pending');
   }
+  showCanceledOrders() {
+    this.filter.set('canceled');
+  }
   shouldShow(order: OrdersInterface): boolean {
     const f = this.filter();
     return (
       f === 'all' ||
-      (f === 'completed' && order.complete) ||
-      (f === 'pending' && !order.complete)
+      (f === 'completed' && order.complete == 'completo') ||
+      (f === 'pending' && order.complete == 'pendente') ||
+      (f === 'canceled' && order.complete == 'cancelado')
     );
   }
 
@@ -41,8 +45,14 @@ export class AdminOrdersComponent {
     this.ordersService
       .completeOrder(orderId)
       .then(() => {
-        console.log(`teste ${orderId} concluido  `);
+        console.log(`completar ${orderId} concluido  `);
       })
       .catch((err) => console.error(err));
+  }
+  cancelOrder(orderId: string) {
+    this.ordersService
+      .cancelOrder(orderId)
+      .then(() => console.log(`cancelar ${orderId} concluido  `))
+      .catch((err) => console.log(err));
   }
 }

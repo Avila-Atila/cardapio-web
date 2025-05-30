@@ -40,7 +40,7 @@ export class CartComponent {
       uid: uid!,
       ownerId: ownerId!,
       flavors: flavors!,
-      complete: false,
+      complete: 'pendente',
       price: this.totalPrice(),
       time: Timestamp.now(),
     };

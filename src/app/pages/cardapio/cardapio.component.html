@@ -33,6 +33,12 @@
         <h2 class="modal-title fs-5" id="exampleModalLabel2">
           Alterar informações do prato
         </h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="editDish" (submit)="sendEditDish()">
@@ -64,36 +70,36 @@
             />
             Já está disponível?
           </label>
-
-          <div formArrayName="ingredientes">
-            <div
-              *ngFor="let ctrl of ingredientesArray.controls; let idx = index"
-              class="form-floating mb-2 d-flex align-items-center"
-            >
-              <input
-                [formControlName]="idx"
-                class="form-control"
-                [id]="'ing-' + idx"
-              />
-              <label [for]="'ing-' + idx">Ingrediente {{ idx + 1 }}</label>
-              <button
-                *ngIf="ingredientesArray.length > 1"
-                type="button"
-                class="btn btn-outline-danger btn-sm ms-2"
-                (click)="removeIngredient(idx)"
+          <div class="overflow-y-auto wrapper__ingredients">
+            <div formArrayName="ingredientes">
+              <div
+                *ngFor="let ctrl of ingredientesArray.controls; let idx = index"
+                class="form-floating mb-2 d-flex align-items-center"
               >
-                &times;
+                <input
+                  [formControlName]="idx"
+                  class="form-control"
+                  [id]="'ing-' + idx"
+                />
+                <label [for]="'ing-' + idx">Ingrediente {{ idx + 1 }}</label>
+                <button
+                  *ngIf="ingredientesArray.length > 1"
+                  type="button"
+                  class="btn btn-outline-danger btn-sm ms-2"
+                  (click)="removeIngredient(idx)"
+                >
+                  &times;
+                </button>
+              </div>
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-sm"
+                (click)="addIngredient()"
+              >
+                + Adicionar ingrediente
               </button>
             </div>
-            <button
-              type="button"
-              class="btn btn-outline-primary btn-sm"
-              (click)="addIngredient()"
-            >
-              + Adicionar ingrediente
-            </button>
           </div>
-
           <div class="modal-footer">
             <button
               type="submit"

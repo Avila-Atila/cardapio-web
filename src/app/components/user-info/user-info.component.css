@@ -10,3 +10,7 @@
 .admin-header {
   border-bottom: 3px solid #ffc107;
 }
+
+.table__fix {
+  min-width: 150px;
+}

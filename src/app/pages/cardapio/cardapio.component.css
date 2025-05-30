@@ -4,23 +4,6 @@
   flex-direction: column;
 }
 
-.animated-bg {
-  animation: gradient 15s ease infinite;
-  background: linear-gradient(-45deg, #dc3545, #974712, #343a40, #dc3545);
-  background-size: 400% 400%;
-}
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .dish-card {
   transition: all 0.3s ease;
   border-left: 4px solid #dc3545;
@@ -64,4 +47,8 @@
 }
 .admin-header {
   border-bottom: 3px solid #ffc107;
+}
+
+.wrapper__ingredients {
+  max-height: 300px;
 }

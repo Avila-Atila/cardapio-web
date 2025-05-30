@@ -4,7 +4,7 @@ import { Flavors } from './flavors';
 export interface OrdersInterface {
   address: string;
   ownerId: string;
-  complete: boolean;
+  complete: 'completo' | 'cancelado' | 'pendente';
   price: number;
   time: Timestamp;
   uid: string;

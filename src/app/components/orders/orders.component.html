@@ -33,11 +33,18 @@
                     <div
                       class="status-badge mb-1"
                       [ngClass]="{
-                        completed: order.complete,
-                        pending: !order.complete
+                        completed: order.complete === 'completo',
+                        pending: order.complete === 'pendente',
+                        canceled: order.complete === 'cancelado'
                       }"
                     >
-                      {{ order.complete ? "Completo" : "Pendente" }}
+                      {{
+                        order.complete == "completo"
+                          ? "Completo"
+                          : order.complete == "cancelado"
+                          ? "Cancelado"
+                          : "Pendente"
+                      }}
                     </div>
                     <div class="text-muted">
                       <small>

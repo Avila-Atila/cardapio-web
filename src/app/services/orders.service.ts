@@ -32,7 +32,11 @@ export class OrdersService {
 
   completeOrder(orderId: string) {
     const orderDocRef = doc(this.firestore, 'pedidos', orderId);
-    return updateDoc(orderDocRef, { complete: true });
+    return updateDoc(orderDocRef, { complete: 'completo' });
+  }
+  cancelOrder(orderId: string) {
+    const orderDocRef = doc(this.firestore, 'pedidos', orderId);
+    return updateDoc(orderDocRef, { complete: 'cancelado' });
   }
 
   getOrdersByUser(uid: string): Observable<OrdersInterface[]> {

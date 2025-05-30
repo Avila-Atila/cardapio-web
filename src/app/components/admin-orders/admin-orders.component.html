@@ -9,25 +9,32 @@
       <div class="col-md-6">
         <div class="btn-group">
           <button
-            class="btn btn-outline-dark active"
+            class="btn btn-sm btn-outline-dark active"
             [class.active]="filter() === 'all'"
             (click)="showAllOrders()"
           >
             Todos
           </button>
           <button
-            class="btn btn-outline-dark"
+            class="btn btn-sm btn-outline-dark"
             [class.active]="filter() === 'completed'"
             (click)="showCompletedOrders()"
           >
             Completos
           </button>
           <button
-            class="btn btn-outline-dark"
+            class="btn btn-sm btn-outline-dark"
             [class.active]="filter() === 'pending'"
             (click)="showCurrentOrders()"
           >
             Pendentes
+          </button>
+          <button
+            class="btn btn-sm btn-outline-dark"
+            [class.active]="filter() === 'canceled'"
+            (click)="showCanceledOrders()"
+          >
+            Cancelados
           </button>
         </div>
       </div>
@@ -53,11 +60,18 @@
             <div
               class="status-badge mb-1"
               [ngClass]="{
-                completed: order.complete,
-                pending: !order.complete
+                completed: order.complete === 'completo',
+                pending: order.complete === 'pendente',
+                canceled: order.complete === 'cancelado'
               }"
             >
-              {{ order.complete ? "Completo" : "Pendente" }}
+              {{
+                order.complete == "completo"
+                  ? "Completo"
+                  : order.complete == "cancelado"
+                  ? "Cancelado"
+                  : "Pendente"
+              }}
             </div>
             <div class="text-muted">
               <small>
@@ -97,13 +111,22 @@
           <div>
             <span class="fw-bold">Total: R$ {{ order.price }}</span>
           </div>
-          <button
-            class="btn btn-sm btn-outline-success"
-            *ngIf="!order.complete"
-            (click)="completeOrder(order.uid)"
-          >
-            Completar pedido
-          </button>
+          <div>
+            <button
+              class="btn btn-sm btn-outline-danger me-2"
+              *ngIf="order.complete === 'pendente'"
+              (click)="cancelOrder(order.uid)"
+            >
+              Cancelar pedido
+            </button>
+            <button
+              class="btn btn-sm btn-outline-success"
+              *ngIf="order.complete === 'pendente'"
+              (click)="completeOrder(order.uid)"
+            >
+              Completar pedido
+            </button>
+          </div>
         </div>
       </div>
     </div>

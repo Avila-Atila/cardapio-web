@@ -2,10 +2,6 @@
   max-height: 300px;
 }
 
-.wrapper__menu {
-  max-height: 500px;
-}
-
 .delete__icon {
   cursor: pointer;
   max-width: fit-content;
