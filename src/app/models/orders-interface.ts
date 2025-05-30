@@ -8,6 +8,7 @@ export interface OrdersInterface {
   price: number;
   time: Timestamp;
   uid: string;
+  orderId?: string;
   flavors: Flavors[];
   drinks?: string[];
   paymentType: 'Cartão de Crédito/Débito' | 'Pix' | 'Dinheiro';

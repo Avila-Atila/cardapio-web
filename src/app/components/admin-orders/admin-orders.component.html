@@ -118,14 +118,14 @@
             <button
               class="btn btn-sm btn-outline-danger me-2"
               *ngIf="order.complete === 'pendente'"
-              (click)="cancelOrder(order.uid)"
+              (click)="cancelOrder(order.orderId!)"
             >
               Cancelar pedido
             </button>
             <button
               class="btn btn-sm btn-outline-success"
               *ngIf="order.complete === 'pendente'"
-              (click)="completeOrder(order.uid)"
+              (click)="completeOrder(order.orderId!, order.uid)"
             >
               Completar pedido
             </button>

@@ -20,7 +20,7 @@ export class OrdersService {
 
   getAllOrders(): Observable<OrdersInterface[]> {
     const pedidosCol = collection(this.firestore, 'pedidos');
-    return collectionData(pedidosCol, { idField: 'uid' }) as Observable<
+    return collectionData(pedidosCol, { idField: 'orderId' }) as Observable<
       OrdersInterface[]
     >;
   }

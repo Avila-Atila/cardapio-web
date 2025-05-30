@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { OrdersInterface } from '../../models/orders-interface';
 import { OrdersService } from '../../services/orders.service';
 import { CommonModule } from '@angular/common';
+import { UsersService } from '../../services/users.service';
 type Filter = 'all' | 'completed' | 'pending' | 'canceled';
 @Component({
   selector: 'app-admin-orders',
@@ -12,7 +13,7 @@ type Filter = 'all' | 'completed' | 'pending' | 'canceled';
 })
 export class AdminOrdersComponent {
   private ordersService = inject(OrdersService);
-
+  private usersService = inject(UsersService);
   orders$!: Observable<OrdersInterface[]>;
   filter = signal<Filter>('all');
   ngOnInit() {
@@ -41,11 +42,14 @@ export class AdminOrdersComponent {
     );
   }
 
-  completeOrder(orderId: string) {
+  completeOrder(orderId: string, ownerId: string) {
     this.ordersService
       .completeOrder(orderId)
       .then(() => {
-        console.log(`completar ${orderId} concluido  `);
+        this.usersService
+          .incrementOrdersCount(ownerId)
+          .then(() => console.log('Pedido incrementado'))
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.error(err));
   }

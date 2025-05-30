@@ -25,7 +25,9 @@
                 >
                   <div>
                     <h5 class="mb-1">
-                      Pedido #{{ order.uid }}
+                      <span class="text-break">
+                        Pedido #{{ order.uid }} -
+                      </span>
                       <span class="text-muted">{{ order.paymentType }}</span>
                     </h5>
                     <small class="text-muted">
@@ -70,7 +72,12 @@
                       </span>
                     </div>
                   </div>
-
+                  <span class="fw-bold"
+                    >Total:
+                    {{
+                      order.price | currency : "BRL" : "symbol" : "1.2-2"
+                    }}</span
+                  >
                   <ng-content *ngIf="order.drinks">
                     <br />
                     <i class="fa-solid fa-wine-bottle"></i>

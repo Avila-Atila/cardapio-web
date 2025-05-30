@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, Input, signal } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,7 @@ export class CartComponent {
   totalPrice = computed(() =>
     this.cartService.currentItems().reduce((sum, item) => sum + item.price, 0)
   );
+  @Input() openState: boolean | undefined = undefined;
 
   payment = new FormControl<OrdersInterface['paymentType'] | ''>('');
 

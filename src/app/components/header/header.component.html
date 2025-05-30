@@ -95,6 +95,6 @@
   </div>
 </nav>
 
-<app-cart></app-cart>
+<app-cart [openState]="openState"></app-cart>
 <app-orders [uid]="authService.currentUser()?.uid"></app-orders>
 <app-profile></app-profile>
