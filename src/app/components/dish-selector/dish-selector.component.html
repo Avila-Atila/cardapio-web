@@ -64,11 +64,11 @@
                 *ngIf="f.disponivel"
               >
                 <div>
-                  <strong class="text-capitalize">{{ f.nome }}</strong> –
+                  <strong class="text-capitalize">{{ f.nome }}</strong> – |
                   <span
                     *ngFor="let idx of f.ingredientes"
                     class="text-capitalize"
-                    >{{ idx }}
+                    >{{ idx }} |
                   </span>
                   <div>
                     {{ f.preco | currency : "BRL" : "symbol" : "1.2-2" }}

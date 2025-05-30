@@ -8,10 +8,11 @@ import { Timestamp } from '@angular/fire/firestore';
 import { OrdersService } from '../../services/orders.service';
 import { Flavors } from '../../models/flavors';
 import { UsersService } from '../../services/users.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
@@ -23,6 +24,8 @@ export class CartComponent {
   totalPrice = computed(() =>
     this.cartService.currentItems().reduce((sum, item) => sum + item.price, 0)
   );
+
+  payment = new FormControl<OrdersInterface['paymentType'] | ''>('');
 
   remove(item: CartItem) {
     this.cartService.removeItem(item);
@@ -43,9 +46,9 @@ export class CartComponent {
       complete: 'pendente',
       price: this.totalPrice(),
       time: Timestamp.now(),
+      paymentType: this.payment.value as OrdersInterface['paymentType'],
     };
     this.orderService.addOrder(order);
-    this.usersService.incrementOrdersCount(uid!);
     this.cartService.currentItems.set([]);
   }
 }

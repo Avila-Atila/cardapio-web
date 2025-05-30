@@ -38,6 +38,16 @@
             </div>
           </div>
         </div>
+        <div>
+          <select [formControl]="payment" id="payment" class="form-select">
+            <option value="" selected disabled>Formas de Pagamento</option>
+            <option value="Cartão de Crédito/Débito">
+              Cartão de Crédito/Débito
+            </option>
+            <option value="Pix">Pix</option>
+            <option value="Dinheiro">Dinheiro</option>
+          </select>
+        </div>
 
         <div class="d-flex justify-content-between mb-3">
           <span>Total:</span>
@@ -53,7 +63,7 @@
           class="btn btn-outline-success"
           (click)="setOrder()"
           data-bs-dismiss="modal"
-          [disabled]="cartService.currentItems().length === 0"
+          [disabled]="cartService.currentItems().length === 0 || !payment.value"
         >
           Finalizar Pedido
         </button>

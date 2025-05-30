@@ -10,4 +10,5 @@ export interface OrdersInterface {
   uid: string;
   flavors: Flavors[];
   drinks?: string[];
+  paymentType: 'Cartão de Crédito/Débito' | 'Pix' | 'Dinheiro';
 }
